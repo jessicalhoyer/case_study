@@ -1,0 +1,118 @@
+@charset "utf-8";
+
+/* resets
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+} */
+
+/* main styles */
+body {
+    font-size:0.9em;
+    background-color:#08030C;
+    font-family:'Quattrocento Sans',helvetica,sans-serif;
+    margin-top:6em;
+    color:#958F9A;
+}
+
+a, a:active, a:visited {
+    text-decoration:none;
+    color:#aaa;
+
+    transition:all 0.6s ease;
+}
+
+a:hover {
+    color:#fff;
+}
+
+/* misc styles */
+.center {
+    text-align:center;
+}
+
+/* main content */
+
+#wrapper {
+    width:70%;
+    margin:auto;
+    background-color:#160821;
+    padding:1em;
+}
+
+footer {
+    width:70%;
+    margin:auto;
+}
+
+/* nav bar */
+nav {
+    width:100%;
+    margin:auto;
+    position:fixed;
+    top:0;
+    left:0;
+    background-color:#20122A;
+}
+
+ul {
+    margin:0;
+    padding:0;
+}
+
+li {
+    display:inline-block;
+    padding:0 0 0 0.6em;
+}
+
+li a.selected {
+    color:#fff;
+}
+
+/* form elements */
+
+input, select, textarea {
+    background-color:#20122A;
+    padding:0.3em;
+    border:none;
+    color:#958F9A;
+}
+
+.line {
+    display:block;
+    margin:0.5em;
+}
+
+/* text styles */
+h1 {
+    color:#fff;
+    font-family:'Shadows Into Light', cursive;
+    font-size:3em;
+}
+
+h2 {
+    font-family:'Quattrocento', georgia, serif;
+    font-weight:normal;
+}
+
+p {
+    color:#958F9A;
+    text-align:justify;
+    line-height:1.6em;
+    letter-spacing:1px;
+}
+
+p.title {
+    font-family:'Shadows Into Light', cursive;
+    font-size:1.5em;
+    color:#fff;
+    font-weight:bold;
+}
+
+p.lead {
+    font-style:italic;
+    color:#958F9A;
+    font-weight:300;
+    letter-spacing:3px;
+}

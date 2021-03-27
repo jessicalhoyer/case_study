@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
         <title>Scribe</title>
 
         <!-- stylesheet -->
-        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="css/main.css">
 
         <!-- fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Quattrocento Sans&display=swap" rel="stylesheet">
