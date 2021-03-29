@@ -1,4 +1,4 @@
-package com.jessica.hoyer.controllers;
+package com.scribe.jessica.hoyer.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 	@GetMapping("/")
 	public String showIndex() {
+		return "index";
+	}
+	
+	@GetMapping("/index")
+	public String showIndex2() {
 		return "index";
 	}
 	

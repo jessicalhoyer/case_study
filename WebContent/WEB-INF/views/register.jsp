@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +11,8 @@
         <title>Scribe | Register</title>
 
         <!-- stylesheet -->
-        <link rel="stylesheet" href="css/main.css">
+        <spring:url value="/resources/css/main.css" var="mainCss"/>
+        <link href="${mainCss}" rel="stylesheet" >
 
         <!-- fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Quattrocento Sans&display=swap" rel="stylesheet">
