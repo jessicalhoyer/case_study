@@ -1,3 +1,4 @@
+<%@ page import="com.scribe.jessica.hoyer.models.User" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -29,25 +30,11 @@
 
 
         <div id="wrapper">
+        
+        <%User u = (User)session.getAttribute("userkey"); %>
 
-            <form class="center" action="./login" method="post">
-            <h2>Login</h2>
+            <p>Welcome ${u.getUsername()}. You have successfully logged in!</p>
             
-                <div class="line">
-                <label for="username">Username</label>
-                <input type="text" name="user" id="user"/>
-                </div>
-
-                <div class="line">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password"/>
-                </div>
-
-                <div class="line">
-                <input type="submit" value="Submit" name="submit" id="submit"/>
-                <input type="reset" value="Reset" name="reset" id="reset"/>
-                </div>
-            </form>
             
         </div>
 

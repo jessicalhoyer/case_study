@@ -2,13 +2,16 @@ package com.scribe.jessica.hoyer.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Document {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id", nullable=false)
-	private int id;
+	private Integer id;
 	
 	@Column(name="title", nullable=false)
 	private String title;
@@ -29,10 +32,9 @@ public class Document {
 		super();
 	}
 	
-	public Document(int id, String title, String creation_date, String modify_date,
+	public Document(String title, String creation_date, String modify_date,
 			String file_path, String content) {
 		super();
-		this.id = id;
 		this.title = title;
 		this.creation_date = creation_date;
 		this.modify_date = modify_date;

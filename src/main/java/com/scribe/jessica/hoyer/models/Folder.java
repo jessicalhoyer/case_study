@@ -2,13 +2,16 @@ package com.scribe.jessica.hoyer.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Folder {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id", nullable=false)
-	private int id;
+	private Integer id;
 	
 	@Column(name="title", nullable=false)
 	private String title;
@@ -17,9 +20,8 @@ public class Folder {
 		super();
 	}
 	
-	public Folder(int id, String title) {
+	public Folder(String title) {
 		super();
-		this.id = id;
 		this.title = title;
 	}
 

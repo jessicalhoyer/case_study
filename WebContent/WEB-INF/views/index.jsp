@@ -24,19 +24,7 @@
     <body>
         <header>
             <!-- logo here potentially -->
-            
-
-            <nav>
-                
-                <ul>
-                    <li><p class="title">Scribe</p></li>
-                    <li><a href="index.html" class="selected">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="register.html">Register</a></li>
-                </ul>
-            </nav>
+            <%@include file="navbar.html" %>
         </header>
 
 
