@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@EnableWebMvc
+//@EnableWebMvc
 @ComponentScan("com.scribe.jessica.hoyer")
 public class WebAppConfig implements WebMvcConfigurer {
 	@Bean
