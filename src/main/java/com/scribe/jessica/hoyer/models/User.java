@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class User {
@@ -16,11 +18,14 @@ public class User {
 	@Column(name="id", nullable=false)
 	private int id;
 	
-//	@Unique
 	@Column(name="username", length=50, nullable=false)
+	@Size(min = 2, max = 50)
+	@NotNull
 	private String username;
 	
 	@Column(name="password", length=50, nullable=false)
+	@Size(min = 4, max = 50)
+	@NotNull
 	private String password;
 	
 	@OneToMany(targetEntity = Document.class)

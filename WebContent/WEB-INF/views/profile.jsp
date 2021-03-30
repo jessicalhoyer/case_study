@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-        <title>Scribe | Welcome</title>
+        <title>Scribe | Login</title>
 
         <!-- stylesheet -->
         <spring:url value="/resources/css/main.css" var="mainCss"/>

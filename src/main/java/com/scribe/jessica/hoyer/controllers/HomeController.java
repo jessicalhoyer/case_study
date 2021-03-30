@@ -69,10 +69,21 @@ public class HomeController {
 		User user = us.findByUsername(username);
 		if (user != null && password.equals(user.getPassword())) {
 			session.setAttribute("currentUser", user);
-			return "success";
+			return "redirect:/success";
 		}
 		model.addAttribute("loginFailed", "Login failed, please try again.");
 		return "login";
+	}
+	
+	@GetMapping("/profile")
+	public String showProfile(Model model, HttpSession session) {
+		User user = (User) session.getAttribute("currentUser");
+		return "profile";
+	}
+	
+	@GetMapping("/directory")
+	public String showDirectory() {
+		return "directory";
 	}
 	
 	@GetMapping("/success")
