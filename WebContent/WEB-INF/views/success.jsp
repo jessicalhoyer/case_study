@@ -26,10 +26,9 @@
 			<nav>
 				<ul>
 					<li><p class="title">Scribe</p></li>
-					<li><a href="index">Home</a></li>
-					<li><a href="about">About</a></li>
-					<li><a href="contact">Contact</a></li>
-					<li><a href="profile">Profile</a></li>
+					<li>Welcome ${currentUser.username}</li>
+					<li><a href="profile?id=${currentUser.id}">Profile</a></li>
+					<li><a href="directory?id=${currentUser.id}">Directory</a></li>
 				</ul>
 			</nav>
 	            
@@ -38,8 +37,8 @@
 
         <div id="wrapper">
 
-            <p>Welcome ${currentUser.username}. You have successfully logged in!</p>
-            
+            <p>Successful login page.</p>
+                        
             
         </div>
 

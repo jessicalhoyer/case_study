@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,25 +40,27 @@
 
         <div id="wrapper">
 
-            <form class="center">
+            <form:form class="center" action="./register" method="post" modelAttribute="user">
 
                 <h2>Register</h2>
                 
                 <div class="line">
                     <label for="username">Username</label>
-                    <input type="text" name="user" id="user"/>
+                    <form:input path="username"/>
+                    <form:errors path="username"/>
                 </div>
 
                 <div class="line">
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password"/>
+                    <form:password path="password"/>
+                    <form:errors path="password"/>
                 </div>
 
                 <div class="line">
-                    <input type="button" value="Submit" name="submit" id="submit"/>
+                    <input type="submit" value="Register" name="submit" id="submit"/>
                     <input type="reset" value="Reset" name="reset" id="reset"/>
                 </div>
-            </form>
+            </form:form>
         </div>
             
         <footer>
