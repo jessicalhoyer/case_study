@@ -1,10 +1,12 @@
 package com.scribe.jessica.hoyer.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import com.scribe.jessica.hoyer.models.User;
 
-public interface UserRepository extends JpaRepository<User, Integer> {
+@Repository
+public interface UserRepository extends CrudRepository<User, Integer> {
 
-	User findByUsername(String username);
+	public User findByUsername(String username);
 }

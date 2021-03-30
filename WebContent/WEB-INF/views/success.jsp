@@ -1,4 +1,3 @@
-<%@ page import="com.scribe.jessica.hoyer.models.User" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -24,16 +23,22 @@
     <body>
         <header>
             <!-- logo here potentially -->
-			<%@include file="navbar.html" %>
-            
+			<nav>
+				<ul>
+					<li><p class="title">Scribe</p></li>
+					<li><a href="index">Home</a></li>
+					<li><a href="about">About</a></li>
+					<li><a href="contact">Contact</a></li>
+					<li><a href="profile">Profile</a></li>
+				</ul>
+			</nav>
+	            
         </header>
 
 
         <div id="wrapper">
-        
-        <%User u = (User)session.getAttribute("userkey"); %>
 
-            <p>Welcome ${u.getUsername()}. You have successfully logged in!</p>
+            <p>Welcome ${currentUser.username}. You have successfully logged in!</p>
             
             
         </div>

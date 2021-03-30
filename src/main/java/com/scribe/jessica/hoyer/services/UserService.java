@@ -15,20 +15,13 @@ public class UserService {
 		this.userRepository = userRepository;
 	}
 	
-	public UserService() {}
-	
 	public void saveUser(User user) {
 		userRepository.save(user);
 	}
 	
-	public boolean loginUser(User user) {
-		User uFound = userRepository.findByUsername(user.getUsername());
-		if (uFound.getPassword().equals(user.getPassword())) {
-			return true;
-		}
-		else {
-			return false;
-		}
+	public User findByUsername(String username) {
+		return userRepository.findByUsername(username);
 	}
+	
 
 }

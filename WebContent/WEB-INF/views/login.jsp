@@ -23,7 +23,16 @@
     <body>
         <header>
             <!-- logo here potentially -->
-			<%@include file="navbar.html" %>
+			<nav>
+				<ul>
+					<li><p class="title">Scribe</p></li>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="contact.html">Contact</a></li>
+					<li><a href="login.html" class="selected">Login</a></li>
+					<li><a href="register.html">Register</a></li>
+				</ul>
+			</nav>
             
         </header>
 
@@ -35,7 +44,7 @@
             
                 <div class="line">
                 <label for="username">Username</label>
-                <input type="text" name="user" id="user"/>
+                <input type="text" name="username" id="username"/>
                 </div>
 
                 <div class="line">
@@ -44,9 +53,11 @@
                 </div>
 
                 <div class="line">
-                <input type="submit" value="Submit" name="submit" id="submit"/>
+                <input type="submit" value="Login" name="submit" id="submit"/>
                 <input type="reset" value="Reset" name="reset" id="reset"/>
                 </div>
+                
+                <p>${loginFailed}</p>
             </form>
             
         </div>

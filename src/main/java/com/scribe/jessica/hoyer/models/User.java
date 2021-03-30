@@ -16,14 +16,13 @@ public class User {
 	@Column(name="id", nullable=false)
 	private Integer id;
 	
+//	@Unique
 	@Column(name="username", length=50, nullable=false)
 	private String username;
 	
 	@Column(name="password", length=50, nullable=false)
 	private String password;
 	
-	// relationships to tables
-	// unsure if I actually need this
 	@OneToMany(targetEntity = Document.class)
 	private List<String> documents;
 	
