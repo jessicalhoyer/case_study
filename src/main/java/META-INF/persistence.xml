@@ -5,6 +5,7 @@
 	<class>com.scribe.jessica.hoyer.models.User</class>
 	<class>com.scribe.jessica.hoyer.models.Document</class>
 	<class>com.scribe.jessica.hoyer.models.Folder</class>
+	<class>com.scribe.jessica.hoyer.models.U_Directory</class>
 	
 	
 		<properties>

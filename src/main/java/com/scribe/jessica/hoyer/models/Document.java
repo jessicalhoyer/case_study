@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Document {
@@ -16,29 +18,20 @@ public class Document {
 	@Column(name="title", nullable=false)
 	private String title;
 	
-	@Column(name="creation_date", nullable=false)
-	private String creation_date;
-	
-	@Column(name="modify_date", nullable=false)
-	private String modify_date;
-	
-	@Column(name="file_path", nullable=false)
-	private String file_path;
-	
 	@Column(name="content")
 	private String content; // do I need a bigger datatype?
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	public Document() {
 		super();
 	}
 	
-	public Document(String title, String creation_date, String modify_date,
-			String file_path, String content) {
+	public Document(String title, String content) {
 		super();
 		this.title = title;
-		this.creation_date = creation_date;
-		this.modify_date = modify_date;
-		this.file_path = file_path;
 		this.content = content;
 	}
 
@@ -56,30 +49,6 @@ public class Document {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String getCreation_date() {
-		return creation_date;
-	}
-
-	public void setCreation_date(String creation_date) {
-		this.creation_date = creation_date;
-	}
-
-	public String getModify_date() {
-		return modify_date;
-	}
-
-	public void setModify_date(String modify_date) {
-		this.modify_date = modify_date;
-	}
-
-	public String getFile_path() {
-		return file_path;
-	}
-
-	public void setFile_path(String file_path) {
-		this.file_path = file_path;
 	}
 
 	public String getContent() {

@@ -1,5 +1,7 @@
 package com.scribe.jessica.hoyer.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -13,21 +15,29 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.scribe.jessica.hoyer.models.Document;
+import com.scribe.jessica.hoyer.models.Folder;
 import com.scribe.jessica.hoyer.models.User;
 import com.scribe.jessica.hoyer.services.DocumentService;
 import com.scribe.jessica.hoyer.services.FolderService;
+import com.scribe.jessica.hoyer.services.U_DirectoryService;
 import com.scribe.jessica.hoyer.services.UserService;
 
 @Controller
 public class HomeController {
 	public UserService us;
-//	DocumentService ds = new DocumentService();
-//	FolderService fs = new FolderService();
+//	public DocumentService ds;
+	public FolderService fs;
+	public U_DirectoryService uds;
 	
 	@Autowired
-	public HomeController(UserService userService) {
+	public HomeController(UserService userService, FolderService folderService,
+			U_DirectoryService uds) {
 		this.us = userService;
+		this.fs = folderService;
+		this.uds = uds;
 	}
 	
 	@GetMapping("/")
@@ -82,13 +92,14 @@ public class HomeController {
 	}
 	
 	@GetMapping("/directory")
-	public String showDirectory(HttpSession session) {
-		if (session != null) {
-			return "directory";
-		}
-		else {
-			return "redirect:/index";
-		}
+	public ModelAndView showDirectory(HttpSession session) {
+		User user = (User) session.getAttribute("currentUser");
+		List<Folder> folderList = fs.listAllFolders(user.getId());
+		List<Document> docList = uds.listDocByFolder(1);
+		ModelAndView mav = new ModelAndView("directory");
+		mav.addObject("folderList", folderList);
+		mav.addObject("docList", docList);
+		return mav;
 	}
 	
 	@GetMapping("/success")

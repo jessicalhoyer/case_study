@@ -28,9 +28,6 @@ public class User {
 	@NotNull
 	private String password;
 	
-	@OneToMany(targetEntity = Document.class)
-	private List<String> documents;
-	
 	@OneToMany(targetEntity = Folder.class)
 	private List<String> folders;
 	
@@ -66,12 +63,6 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", documents=" + documents
-				+ ", folders=" + folders + "]";
 	}
 	
 	

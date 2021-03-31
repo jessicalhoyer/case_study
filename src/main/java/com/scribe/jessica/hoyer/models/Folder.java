@@ -5,16 +5,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Folder {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id", nullable=false)
-	private Integer id;
+	private int id;
 	
 	@Column(name="title", nullable=false)
 	private String title;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	Folder() {
 		super();

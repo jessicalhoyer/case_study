@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-        <title>Scribe | Directory</title>
+        <title>Scribe | ${currentUser.username}'s Directory</title>
 
         <!-- stylesheet -->
         <spring:url value="/resources/css/main.css" var="mainCss"/>
@@ -40,14 +41,21 @@
         <div id="controlnav">
 			<ul>
 				<li><a href="organize?id=${currentUser.id}">Organize</a>
-				<li><a href="edit?id=${document.id}">Edit</a>
+				<li><a href="edit?id=${document.id}">Edit Document</a>
 			</ul>
 		</div>
         
         <div class="flex-container">
         
         <section class="organizer">
-        <p>Nested for loop, first loop gets folder names, second loop gets documents located in the folders.</p>
+	        <c:forEach items="${folderList}" var="folder">
+	        <p>${folder.title}</p>
+	        
+	        <c:forEach items="${docList}" var="doc">
+	        <p>${doc.title}</p>
+	        </c:forEach>
+	        
+	        </c:forEach>
         </section>
         
         <section class="body">

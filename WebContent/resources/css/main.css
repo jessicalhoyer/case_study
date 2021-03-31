@@ -101,6 +101,7 @@ li a.selected {
     background-color:#160821;
     padding:1em;
     top:5.3em;
+    text-align:right;
 }
 
 /* form elements */
