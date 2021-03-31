@@ -29,6 +29,7 @@
 					<li>Welcome ${currentUser.username}</li>
 					<li><a href="profile?id=${currentUser.id}">Profile</a></li>
 					<li><a href="directory?id=${currentUser.id}">Directory</a></li>
+					<li><a href="logout?id=${currentUser.id}">Logout</a></li>
 				</ul>
 			</nav>
 	            

@@ -41,6 +41,32 @@ a:hover {
     padding:1em;
 }
 
+.flex-container {
+	display:flex;
+	flex-direction:row;
+	justify-content:space-around;
+}
+
+.organizer {
+	background-color:#20122A;
+	padding:1em;
+	flex:1;
+	border:5px solid #160821;
+}
+
+.body {
+	background-color:#20122A;
+	padding:1em;
+	flex:4;
+	border:5px solid #160821;
+}
+
+@media (max-width:970px) {
+	.flex-container {
+		flex-direction:column;
+	}
+}
+
 footer {
     width:70%;
     margin:auto;
@@ -68,6 +94,13 @@ li {
 
 li a.selected {
     color:#fff;
+}
+
+#controlnav {
+    position:sticky;
+    background-color:#160821;
+    padding:1em;
+    top:5.3em;
 }
 
 /* form elements */
