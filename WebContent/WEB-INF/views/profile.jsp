@@ -27,8 +27,9 @@
 				<ul>
 					<li><p class="title">Scribe</p></li>
 					<li>Welcome ${currentUser.username}</li>
-					<li><a href="profile?id=${currentUser.id}">Profile</a></li>
-					<li><a href="directory?id=${currentUser.id}">Directory</a></li>
+					<li><a href="profile">Profile</a></li>
+					<li><a href="directory">Directory</a></li>
+					<li><a href="logout">Logout</a></li>
 				</ul>
 			</nav>
 	            

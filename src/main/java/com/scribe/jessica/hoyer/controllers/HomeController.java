@@ -82,13 +82,30 @@ public class HomeController {
 	}
 	
 	@GetMapping("/directory")
-	public String showDirectory() {
-		return "directory";
+	public String showDirectory(HttpSession session) {
+		if (session != null) {
+			return "directory";
+		}
+		else {
+			return "redirect:/index";
+		}
 	}
 	
 	@GetMapping("/success")
 	public String showSuccess() {
 		return "success";
+	}
+	
+	@GetMapping("/logout")
+	public String showLogout() {
+		return "login";
+	}
+	
+	@PostMapping("/logout")
+	public String processLogout(HttpSession session, Model model) {
+		session.setAttribute("currentUser", null);
+		model.addAttribute("logoutSuccess", "You have successfully logged out");
+		return "redirect:/login";
 	}
 
 }

@@ -27,9 +27,9 @@
 				<ul>
 					<li><p class="title">Scribe</p></li>
 					<li>Welcome ${currentUser.username}</li>
-					<li><a href="profile?id=${currentUser.id}">Profile</a></li>
-					<li><a href="directory?id=${currentUser.id}">Directory</a></li>
-					<li><a href="logout?id=${currentUser.id}">Logout</a></li>
+					<li><a href="profile">Profile</a></li>
+					<li><a href="directory">Directory</a></li>
+					<li><a href="logout">Logout</a></li>
 				</ul>
 			</nav>
 	            
@@ -47,7 +47,7 @@
         <div class="flex-container">
         
         <section class="organizer">
-        <p>Folder and document list here</p>
+        <p>Nested for loop, first loop gets folder names, second loop gets documents located in the folders.</p>
         </section>
         
         <section class="body">
