@@ -1,5 +1,7 @@
 package com.scribe.jessica.hoyer.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,14 @@ public class DocumentService {
 	
 	public void saveDocument(Document doc) {
 		documentRepository.save(doc);
+	}
+	
+	public List<Document> listAllDocuments() {
+		return (List<Document>) documentRepository.findAll();
+	}
+	
+	public List<Document> listAllDocsByFolderId(int id) {
+		return (List<Document>) documentRepository.findByFolderId(id);
 	}
 
 }

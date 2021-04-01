@@ -22,22 +22,20 @@ import com.scribe.jessica.hoyer.models.Folder;
 import com.scribe.jessica.hoyer.models.User;
 import com.scribe.jessica.hoyer.services.DocumentService;
 import com.scribe.jessica.hoyer.services.FolderService;
-import com.scribe.jessica.hoyer.services.U_DirectoryService;
 import com.scribe.jessica.hoyer.services.UserService;
 
 @Controller
 public class HomeController {
 	public UserService us;
-//	public DocumentService ds;
+	public DocumentService ds;
 	public FolderService fs;
-	public U_DirectoryService uds;
 	
 	@Autowired
 	public HomeController(UserService userService, FolderService folderService,
-			U_DirectoryService uds) {
+			DocumentService ds) {
 		this.us = userService;
 		this.fs = folderService;
-		this.uds = uds;
+		this.ds = ds;
 	}
 	
 	@GetMapping("/")
@@ -95,7 +93,7 @@ public class HomeController {
 	public ModelAndView showDirectory(HttpSession session) {
 		User user = (User) session.getAttribute("currentUser");
 		List<Folder> folderList = fs.listAllFolders(user.getId());
-		List<Document> docList = uds.listDocByFolder(1);
+		List<Document> docList = ds.listAllDocsByFolderId(1);
 		ModelAndView mav = new ModelAndView("directory");
 		mav.addObject("folderList", folderList);
 		mav.addObject("docList", docList);

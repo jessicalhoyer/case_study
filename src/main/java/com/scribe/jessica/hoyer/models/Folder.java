@@ -1,5 +1,7 @@
 package com.scribe.jessica.hoyer.models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Folder {
@@ -17,6 +20,9 @@ public class Folder {
 	
 	@Column(name="title", nullable=false)
 	private String title;
+	
+	@OneToMany(targetEntity = Document.class)
+	private List<String> documents;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")

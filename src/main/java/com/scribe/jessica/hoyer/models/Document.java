@@ -19,11 +19,11 @@ public class Document {
 	private String title;
 	
 	@Column(name="content")
-	private String content; // do I need a bigger datatype?
+	private String content;
 	
 	@ManyToOne
-	@JoinColumn(name="user_id")
-	private User user;
+	@JoinColumn(name="folder_id")
+	private Folder folder;
 	
 	public Document() {
 		super();
