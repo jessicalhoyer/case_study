@@ -150,3 +150,11 @@ p.lead {
     font-weight:300;
     letter-spacing:3px;
 }
+
+p.folder {
+	font-weight:bold;
+}
+
+p.doc {
+	
+}

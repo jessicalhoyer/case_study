@@ -49,10 +49,10 @@
         
         <section class="organizer">
 	        <c:forEach items="${folderList}" var="folder">
-	        <p>${folder.title}</p>
+	        <p class="folder">${folder.title}</p>
 	        
 	        <c:forEach items="${docList}" var="doc">
-	        <p>${doc.title}</p>
+	        <p class="doc"><a href="doc?id=${doc.id}">${doc.title}</a></p>
 	        </c:forEach>
 	        
 	        </c:forEach>

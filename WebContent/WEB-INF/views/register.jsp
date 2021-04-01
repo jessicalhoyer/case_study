@@ -45,12 +45,14 @@
                 <div class="line">
                     <label for="username">Username</label>
                     <form:input path="username"/>
+                    <br/>
                     <form:errors path="username"/>
                 </div>
 
                 <div class="line">
                     <label for="password">Password</label>
                     <form:password path="password"/>
+                    <br/>
                     <form:errors path="password"/>
                 </div>
 

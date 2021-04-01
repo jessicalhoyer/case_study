@@ -19,12 +19,12 @@ public class User {
 	private int id;
 	
 	@Column(name="username", length=50, nullable=false, unique=true)
-	@Size(min = 2, max = 50)
+	@Size(min = 2, max = 50, message="Username must be between 2 and 50 characters")
 	@NotNull
 	private String username;
 	
 	@Column(name="password", length=50, nullable=false)
-	@Size(min = 4, max = 50)
+	@Size(min = 4, max = 20, message="Password must be between 4 and 20 characters")
 	@NotNull
 	private String password;
 	
