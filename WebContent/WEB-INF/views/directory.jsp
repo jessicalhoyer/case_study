@@ -40,8 +40,8 @@
         
         <div id="controlnav">
 			<ul>
-				<li><a href="organize?id=${currentUser.id}">Organize</a>
-				<li><a href="edit?id=${document.id}">Edit Document</a>
+				<li><a href="create">Create New</a></li>
+				<li><a href="sort/${currentUser.id}">Sort</a></li>
 			</ul>
 		</div>
         

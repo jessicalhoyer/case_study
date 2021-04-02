@@ -98,8 +98,15 @@ public class HomeController {
 		
 		User user = (User) session.getAttribute("currentUser");
 		List<Folder> folderList = fs.listAllFolders(user.getId());
-		model.addAttribute("folderList", folderList);
-		return "directory";
+		
+		if (folderList != null) {
+			model.addAttribute("folderList", folderList);
+			return "directory";
+		}
+		else {
+			model.addAttribute("folderList", "Nothing to display.");
+			return "directory";
+		}
 	}
 	
 	@GetMapping("/doc/{id}")
@@ -113,6 +120,19 @@ public class HomeController {
 		model.addAttribute("folderList", folderList);
 		
 		return "doc";
+	}
+	
+	@GetMapping("/edit/{id}")
+	public String editDocument(@PathVariable("id") int id, Model model,
+			HttpSession session) {
+		Document doc = ds.findById(id);
+		model.addAttribute("currentDoc", doc);
+		
+		User user = (User) session.getAttribute("currentUser");
+		List<Folder> folderList = fs.listAllFolders(user.getId());
+		model.addAttribute("folderList", folderList);
+		
+		return "edit";
 	}
 	
 	@GetMapping("/success")

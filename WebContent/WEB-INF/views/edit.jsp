@@ -40,9 +40,9 @@
         
         <div id="controlnav">
 			<ul>
-				<li><a href="create">Create New</a></li>
-				<li><a href="sort/${currentUser.id}">Sort</a></li>
-				<li><a href="${pageContext.request.contextPath}/edit/${currentDoc.id}">Edit Mode</a></li>
+				<li><a href="${pageContext.request.contextPath}/create">Create New</a></li>
+				<li><a href="${pageContext.request.contextPath}/sort/${currentUser.id}">Sort</a></li>
+				<li><a href="${pageContext.request.contextPath}/doc/${currentDoc.id}">View Mode</a></li>
 			</ul>
 		</div>
         
@@ -63,7 +63,7 @@
         
         <h2>${currentDoc.title}</h2>
         
-        <p>${currentDoc.content}</p>
+        <textarea>${currentDoc.content}</textarea>
         
 
         </section>
