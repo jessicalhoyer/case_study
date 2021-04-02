@@ -92,20 +92,27 @@ public class HomeController {
 	}
 	
 	@GetMapping("/directory")
-	public ModelAndView showDirectory(HttpSession session) {
+	public String showDirectory(HttpSession session, Model model) {
+		
+		// if folderList is empty display message
+		
 		User user = (User) session.getAttribute("currentUser");
 		List<Folder> folderList = fs.listAllFolders(user.getId());
-		ModelAndView mav = new ModelAndView("directory");
-		mav.addObject("folderList", folderList);
-		return mav;
+		model.addAttribute("folderList", folderList);
+		return "directory";
 	}
 	
-	@RequestMapping("/doc")
-	public Document getDocument(@ModelAttribute("docList") Document document,
-			Model model) {
-		Document doc = ds.findById(document.getId());
+	@GetMapping("/doc/{id}")
+	public String getDocument(@PathVariable("id") int id, Model model,
+			HttpSession session) {
+		Document doc = ds.findById(id);
 		model.addAttribute("currentDoc", doc);
-		return doc;
+		
+		User user = (User) session.getAttribute("currentUser");
+		List<Folder> folderList = fs.listAllFolders(user.getId());
+		model.addAttribute("folderList", folderList);
+		
+		return "doc";
 	}
 	
 	@GetMapping("/success")

@@ -52,15 +52,13 @@
 	        <p class="folder">${folder.title}</p>
 	        	
 	        	<c:forEach items="${folder.documents}" var="doc">
-		        <p class="doc"><a href="doc?id=${doc.id}">${doc.title}</a></p>
+		        <p class="doc"><a href="doc/${doc.id}">${doc.title}</a></p>
 		        </c:forEach>
 	        
 	        </c:forEach>
         </section>
         
         <section class="body">
-        
-        <!-- <p>${currentDoc.content}</p> -->
         
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lectus ex, sagittis et sapien eu, lacinia laoreet urna. Cras nec quam ante. Nulla nec magna tincidunt nisi sodales blandit sed id leo. Phasellus semper dictum tortor, eu laoreet nisi sodales vitae. In dignissim nunc vel ipsum molestie pellentesque. Donec maximus volutpat turpis, efficitur convallis felis tincidunt et. Aliquam tincidunt ultricies mi sed scelerisque. In vitae feugiat quam. Nunc pulvinar odio at pharetra feugiat. Morbi vehicula molestie mi eu iaculis.</p>
 
