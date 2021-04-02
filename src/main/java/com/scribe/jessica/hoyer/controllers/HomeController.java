@@ -95,14 +95,8 @@ public class HomeController {
 	public ModelAndView showDirectory(HttpSession session) {
 		User user = (User) session.getAttribute("currentUser");
 		List<Folder> folderList = fs.listAllFolders(user.getId());
-		
-		// depending on the number of folders a user has
-//		 loop through a docList and get every single folder?
-		
-//		List<Document> docList = ds.listAllDocsByFolderId(1);
 		ModelAndView mav = new ModelAndView("directory");
 		mav.addObject("folderList", folderList);
-//		mav.addObject("docList", docList);
 		return mav;
 	}
 	

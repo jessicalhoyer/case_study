@@ -25,7 +25,7 @@ public class Folder {
 	@Column(name="title", nullable=false)
 	private String title;
 	
-	@OneToMany(targetEntity = Document.class, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "folder", fetch = FetchType.EAGER)
 	private List<Document> documents;
 	
 	@ManyToOne

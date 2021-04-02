@@ -51,7 +51,9 @@
 	        <c:forEach items="${folderList}" var="folder">
 	        <p class="folder">${folder.title}</p>
 	        	
-	        	<p>${folder.documents}</p>
+	        	<c:forEach items="${folder.documents}" var="doc">
+		        <p class="doc"><a href="doc?id=${doc.id}">${doc.title}</a></p>
+		        </c:forEach>
 	        
 	        </c:forEach>
         </section>
