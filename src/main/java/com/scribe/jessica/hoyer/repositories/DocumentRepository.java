@@ -11,5 +11,7 @@ public interface DocumentRepository extends JpaRepository<Document, Integer> {
 	// find by documents by username and folder id
 	
 	public List<Document> findByFolderId(int id);
+	
+	public Document findById(int id);
 
 }

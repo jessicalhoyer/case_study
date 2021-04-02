@@ -8,10 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name = "user")
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,25 +22,26 @@ public class User {
 	
 	@Column(name="username", length=50, nullable=false, unique=true)
 	@Size(min = 2, max = 50, message="Username must be between 2 and 50 characters")
-	@NotNull
+	@NotBlank
 	private String username;
 	
 	@Column(name="password", length=50, nullable=false)
 	@Size(min = 4, max = 20, message="Password must be between 4 and 20 characters")
-	@NotNull
+	@NotBlank
 	private String password;
 	
 	@OneToMany(targetEntity = Folder.class)
-	private List<String> folders;
+	private List<Folder> folders;
 	
 	public User() {
 		super();
 	}
 	
-	public User(String username, String password) {
+	public User(String username, String password, List<Folder> folders) {
 		super();
 		this.username = username;
 		this.password = password;
+		this.folders = folders;
 	}
 
 	public int getId() {
@@ -63,6 +66,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public List<Folder> getFolders() {
+		return folders;
+	}
+
+	public void setFolders(List<Folder> folders) {
+		this.folders = folders;
 	}
 	
 	

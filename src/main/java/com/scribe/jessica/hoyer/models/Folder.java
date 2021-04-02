@@ -1,17 +1,21 @@
 package com.scribe.jessica.hoyer.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "folder")
 public class Folder {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,20 +25,21 @@ public class Folder {
 	@Column(name="title", nullable=false)
 	private String title;
 	
-	@OneToMany(targetEntity = Document.class)
-	private List<String> documents;
+	@OneToMany(targetEntity = Document.class, fetch = FetchType.EAGER)
+	private List<Document> documents;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	Folder() {
+	public Folder() {
 		super();
 	}
 	
-	public Folder(String title) {
+	public Folder(String title, List<Document> documents) {
 		super();
 		this.title = title;
+		this.documents = documents;
 	}
 
 	public int getId() {
@@ -51,6 +56,14 @@ public class Folder {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public List<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(List<Document> documents) {
+		this.documents = documents;
 	}
 	
 	

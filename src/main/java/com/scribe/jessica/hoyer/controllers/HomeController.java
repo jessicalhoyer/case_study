@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -93,11 +95,23 @@ public class HomeController {
 	public ModelAndView showDirectory(HttpSession session) {
 		User user = (User) session.getAttribute("currentUser");
 		List<Folder> folderList = fs.listAllFolders(user.getId());
-		List<Document> docList = ds.listAllDocsByFolderId(1);
+		
+		// depending on the number of folders a user has
+//		 loop through a docList and get every single folder?
+		
+//		List<Document> docList = ds.listAllDocsByFolderId(1);
 		ModelAndView mav = new ModelAndView("directory");
 		mav.addObject("folderList", folderList);
-		mav.addObject("docList", docList);
+//		mav.addObject("docList", docList);
 		return mav;
+	}
+	
+	@RequestMapping("/doc")
+	public Document getDocument(@ModelAttribute("docList") Document document,
+			Model model) {
+		Document doc = ds.findById(document.getId());
+		model.addAttribute("currentDoc", doc);
+		return doc;
 	}
 	
 	@GetMapping("/success")

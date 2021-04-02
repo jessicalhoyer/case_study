@@ -28,5 +28,9 @@ public class DocumentService {
 	public List<Document> listAllDocsByFolderId(int id) {
 		return (List<Document>) documentRepository.findByFolderId(id);
 	}
+	
+	public Document findById(int id) {
+		return documentRepository.findById(id);
+	}
 
 }
