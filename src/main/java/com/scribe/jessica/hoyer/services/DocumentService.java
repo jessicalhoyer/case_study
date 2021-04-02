@@ -32,5 +32,9 @@ public class DocumentService {
 	public Document findById(int id) {
 		return documentRepository.findById(id);
 	}
+	
+	public void editDocument(String title, String content, int id) {
+		documentRepository.editDocument(title, content, id);
+	}
 
 }

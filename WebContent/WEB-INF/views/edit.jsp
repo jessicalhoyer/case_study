@@ -2,6 +2,7 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,8 +64,21 @@
         
         <h2>${currentDoc.title}</h2>
         
-        <textarea>${currentDoc.content}</textarea>
+        <form action="${pageContext.request.contextPath}/edit" method="post">
         
+        <input type="hidden" name="user_id" value="${currentUser.id}"/>
+        <input type="hidden" name="doc_id" value="${currentDoc.id}"/>
+        
+        <label for="title">Title</label>
+        <input type="text" name="title" value="${currentDoc.title}" style="border:1px solid black;"/>
+        <br/>
+        <textarea name="content" rows="40" cols="40" style="border:1px solid black;">${currentDoc.content}</textarea>
+        <br/>
+        <input type="submit" value="Save" name="submit" id="submit"/>
+        
+        </form>
+        
+        <p>${editSuccess}</p>
 
         </section>
         

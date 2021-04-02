@@ -110,7 +110,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("/doc/{id}")
-	public String getDocument(@PathVariable("id") int id, Model model,
+	public String showDocument(@PathVariable("id") int id, Model model,
 			HttpSession session) {
 		Document doc = ds.findById(id);
 		model.addAttribute("currentDoc", doc);
@@ -132,6 +132,17 @@ public class HomeController {
 		List<Folder> folderList = fs.listAllFolders(user.getId());
 		model.addAttribute("folderList", folderList);
 		
+		return "edit";
+	}
+	
+	@PostMapping("/edit")
+	public String processDocument(
+			@RequestParam("title") String title,
+			@RequestParam("content") String content,
+			@RequestParam("doc_id") int id,
+			Model model) {
+		ds.editDocument(title, content, id);
+		model.addAttribute("editSuccess", "Document successfully edited");
 		return "edit";
 	}
 	
