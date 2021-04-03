@@ -64,19 +64,18 @@
         
         <h2>${currentDoc.title}</h2>
         
-        <form action="${pageContext.request.contextPath}/edit" method="post">
+        <form:form action="${pageContext.request.contextPath}/edit" method="post" modelAttribute="editDoc">
         
-        <input type="hidden" name="user_id" value="${currentUser.id}"/>
-        <input type="hidden" name="doc_id" value="${currentDoc.id}"/>
         
         <label for="title">Title</label>
-        <input type="text" name="title" value="${currentDoc.title}" style="border:1px solid black;"/>
+        <form:input path="title" value="${currentDoc.title}" style="border:1px solid black;"/>
+        <form:errors path="title"/>
         <br/>
-        <textarea name="content" rows="40" cols="60" style="border:1px solid black;">${currentDoc.content}</textarea>
+        <textarea name="content"  rows="40" cols="60" style="border:1px solid black;">${currentDoc.content}</textarea>
         <br/>
         <input type="submit" value="Save" name="submit" id="submit"/>
         
-        </form>
+        </form:form>
 
         </section>
         

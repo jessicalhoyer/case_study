@@ -127,6 +127,7 @@ public class HomeController {
 			HttpSession session) {
 		Document doc = ds.findById(id);
 		model.addAttribute("currentDoc", doc);
+		model.addAttribute("editDoc", new Document());
 		
 		User user = (User) session.getAttribute("currentUser");
 		List<Folder> folderList = fs.listAllFolders(user.getId());
@@ -136,18 +137,21 @@ public class HomeController {
 	}
 	
 	@PostMapping("/edit")
-	public String processDocument(
-			@RequestParam("title") String title,
+	public String processDocument(@Valid @ModelAttribute("editDoc") Document doc,
 			@RequestParam("content") String content,
-			@RequestParam("doc_id") int id,
-			Model model, HttpSession session) {
+			Model model, HttpSession session, BindingResult result) {
 		User user = (User) session.getAttribute("currentUser");
 		List<Folder> folderList = fs.listAllFolders(user.getId());
 		model.addAttribute("folderList", folderList);
 		
-		ds.editDocument(title, content, id);
-		model.addAttribute("editSuccess", "Document successfully edited");
-		return "directory";
+		if (result.hasErrors()) {
+			return "edit";
+		}
+		else {
+			ds.editDocument(doc.getTitle(), content, doc.getId());
+			model.addAttribute("editSuccess", "Document successfully edited");
+			return "directory";
+		}
 	}
 	
 	@GetMapping("/success")
