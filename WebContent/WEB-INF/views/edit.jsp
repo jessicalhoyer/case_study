@@ -72,13 +72,11 @@
         <label for="title">Title</label>
         <input type="text" name="title" value="${currentDoc.title}" style="border:1px solid black;"/>
         <br/>
-        <textarea name="content" rows="40" cols="40" style="border:1px solid black;">${currentDoc.content}</textarea>
+        <textarea name="content" rows="40" cols="60" style="border:1px solid black;">${currentDoc.content}</textarea>
         <br/>
         <input type="submit" value="Save" name="submit" id="submit"/>
         
         </form>
-        
-        <p>${editSuccess}</p>
 
         </section>
         

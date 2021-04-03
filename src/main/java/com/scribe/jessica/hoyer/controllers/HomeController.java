@@ -140,10 +140,14 @@ public class HomeController {
 			@RequestParam("title") String title,
 			@RequestParam("content") String content,
 			@RequestParam("doc_id") int id,
-			Model model) {
+			Model model, HttpSession session) {
+		User user = (User) session.getAttribute("currentUser");
+		List<Folder> folderList = fs.listAllFolders(user.getId());
+		model.addAttribute("folderList", folderList);
+		
 		ds.editDocument(title, content, id);
 		model.addAttribute("editSuccess", "Document successfully edited");
-		return "edit";
+		return "directory";
 	}
 	
 	@GetMapping("/success")
@@ -160,7 +164,7 @@ public class HomeController {
 	public String processLogout(HttpSession session, Model model) {
 		session.setAttribute("currentUser", null);
 		model.addAttribute("logoutSuccess", "You have successfully logged out");
-		return "redirect:/login";
+		return "login";
 	}
 
 }

@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "document")
@@ -18,6 +19,7 @@ public class Document {
 	private int id;
 	
 	@Column(name="title", nullable=false)
+	@NotBlank
 	private String title;
 	
 	@Column(name="content")
