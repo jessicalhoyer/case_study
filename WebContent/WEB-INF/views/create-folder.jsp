@@ -58,7 +58,7 @@
         
         
         <label for="title">Title</label>
-        <form:hidden path="user_id" value="${currentUser.id}"/>
+        
         <form:input path="title" style="border:1px solid black;"/>
         <form:errors path="title"/>
         <br/>

@@ -62,6 +62,14 @@ public class Document {
 	public void setContent(String content) {
 		this.content = content;
 	}
+
+	public Folder getFolder() {
+		return folder;
+	}
+
+	public void setFolder(Folder folder) {
+		this.folder = folder;
+	}
 	
 	
 

@@ -162,14 +162,21 @@ public class HomeController {
 	
 	@PostMapping("/create-folder")
 	public String processCreateFolder(@Valid @ModelAttribute("newFolder") Folder folder,
-			BindingResult result, Model model) {
+			BindingResult result, Model model, HttpSession session) {
+		
+		User user = (User) session.getAttribute("currentUser");
+		folder.setUser(user);
+		
 		if (result.hasErrors()) {
-			model.addAttribute("createFolderSuccess", "Folder created successfully.");
-			return "directory";
+			return "create-folder";
 		}
 		else {
+			List<Folder> folderList = fs.listAllFolders(user.getId());
+			model.addAttribute("folderList", folderList);
 			fs.saveFolder(folder);
-			return "create-folder";
+			model.addAttribute("createFolderSuccess", "Folder created successfully.");
+			return "directory";
+			
 		}
 	}
 	
