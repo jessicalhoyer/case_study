@@ -50,31 +50,19 @@
         
         <div class="flex-container">
         
-        <section class="organizer">
-	        <c:forEach items="${folderList}" var="folder">
-	        <p class="folder">${folder.title}</p>
-	        	
-	        	<c:forEach items="${folder.documents}" var="doc">
-		        <p class="doc"><a href="${doc.id}">${doc.title}</a></p>
-		        </c:forEach>
-	        
-	        </c:forEach>
-        </section>
-        
         <section class="body">
         
-        <h2>${currentDoc.title}</h2>
+        <h2>Create New Folder</h2>
         
-        <form:form action="${pageContext.request.contextPath}/edit" method="post" modelAttribute="editDoc">
+        <form:form action="./create-folder" method="post" modelAttribute="newFolder">
         
         
         <label for="title">Title</label>
-        <form:input path="title" value="${currentDoc.title}" style="border:1px solid black;"/>
+        <form:hidden path="user_id" value="${currentUser.id}"/>
+        <form:input path="title" style="border:1px solid black;"/>
         <form:errors path="title"/>
         <br/>
-        <textarea name="content"  rows="40" cols="60" style="border:1px solid black;">${currentDoc.content}</textarea>
-        <br/>
-        <input type="submit" value="Save" name="submit" id="submit"/>
+        <input type="submit" value="Create" name="submit" id="submit"/>
         
         </form:form>
 

@@ -40,7 +40,8 @@
         
         <div id="controlnav">
 			<ul>
-				<li><a href="create">Create New</a></li>
+				<li><a href="${pageContext.request.contextPath}/create-folder">Create Folder</a></li>
+				<li><a href="${pageContext.request.contextPath}/create-doc">Create Document</a></li>
 				<li><a href="sort/${currentUser.id}">Sort</a></li>
 				<li><a href="${pageContext.request.contextPath}/edit/${currentDoc.id}">Edit Mode</a></li>
 			</ul>

@@ -154,6 +154,25 @@ public class HomeController {
 		}
 	}
 	
+	@GetMapping("/create-folder")
+	public String showCreateFolder(Model model) {
+		model.addAttribute("newFolder", new Folder());
+		return "create-folder";
+	}
+	
+	@PostMapping("/create-folder")
+	public String processCreateFolder(@Valid @ModelAttribute("newFolder") Folder folder,
+			BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			model.addAttribute("createFolderSuccess", "Folder created successfully.");
+			return "directory";
+		}
+		else {
+			fs.saveFolder(folder);
+			return "create-folder";
+		}
+	}
+	
 	@GetMapping("/success")
 	public String showSuccess() {
 		return "success";

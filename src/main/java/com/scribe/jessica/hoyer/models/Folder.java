@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "folder")
@@ -23,6 +24,7 @@ public class Folder {
 	private int id;
 	
 	@Column(name="title", nullable=false)
+	@NotBlank
 	private String title;
 	
 	@OneToMany(mappedBy = "folder", fetch = FetchType.EAGER)
