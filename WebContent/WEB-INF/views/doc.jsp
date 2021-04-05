@@ -51,7 +51,7 @@
         
         <section class="organizer">
 	        <c:forEach items="${folderList}" var="folder">
-	        <p class="folder"><a href="/edit-folder/${folder.id}">${folder.title}</a></p>
+	        <p class="folder">${folder.title}</p>
 	        	
 	        	<c:forEach items="${folder.documents}" var="doc">
 		        <p class="doc"><a href="${doc.id}">${doc.title}</a></p>
