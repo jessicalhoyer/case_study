@@ -65,6 +65,8 @@
         
         <p>${createFolderSuccess}</p>
         
+        <p>${createDocSuccess}</p>
+        
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lectus ex, sagittis et sapien eu, lacinia laoreet urna. Cras nec quam ante. Nulla nec magna tincidunt nisi sodales blandit sed id leo. Phasellus semper dictum tortor, eu laoreet nisi sodales vitae. In dignissim nunc vel ipsum molestie pellentesque. Donec maximus volutpat turpis, efficitur convallis felis tincidunt et. Aliquam tincidunt ultricies mi sed scelerisque. In vitae feugiat quam. Nunc pulvinar odio at pharetra feugiat. Morbi vehicula molestie mi eu iaculis.</p>
 
             <p>Suspendisse nunc metus, luctus quis interdum nec, tristique a quam. Nam iaculis fermentum dui fringilla dignissim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis nec tellus egestas velit faucibus convallis. Aliquam erat volutpat. Maecenas non nisl sodales, pulvinar mi et, dictum turpis. Vestibulum molestie risus vel dui sagittis venenatis. Vestibulum et urna maximus, pulvinar sapien eu, laoreet ante.</p>

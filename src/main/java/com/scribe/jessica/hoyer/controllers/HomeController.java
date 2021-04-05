@@ -138,7 +138,6 @@ public class HomeController {
 	
 	@PostMapping("/edit")
 	public String processDocument(@Valid @ModelAttribute("editDoc") Document doc,
-			@RequestParam("content") String content,
 			Model model, HttpSession session, BindingResult result) {
 		User user = (User) session.getAttribute("currentUser");
 		List<Folder> folderList = fs.listAllFolders(user.getId());
@@ -148,7 +147,7 @@ public class HomeController {
 			return "edit";
 		}
 		else {
-			ds.editDocument(doc.getTitle(), content, doc.getId());
+			ds.editDocument(doc.getTitle(), doc.getContent(), doc.getId());
 			model.addAttribute("editSuccess", "Document successfully edited");
 			return "directory";
 		}
@@ -175,6 +174,35 @@ public class HomeController {
 			model.addAttribute("folderList", folderList);
 			fs.saveFolder(folder);
 			model.addAttribute("createFolderSuccess", "Folder created successfully.");
+			return "directory";
+			
+		}
+	}
+	
+	@GetMapping("/create-doc")
+	public String showCreateDoc(Model model, HttpSession session) {
+		User user = (User) session.getAttribute("currentUser");
+		
+		List<Folder> folderList = fs.listAllFolders(user.getId());
+		model.addAttribute("folderList", folderList);
+		
+		model.addAttribute("newDoc", new Document());
+		return "create-doc";
+	}
+	
+	@PostMapping("/create-doc")
+	public String processCreateDoc(@Valid @ModelAttribute("newDoc") Document doc,
+			BindingResult result, Model model, HttpSession session) {
+		User user = (User) session.getAttribute("currentUser");
+		List<Folder> folderList = fs.listAllFolders(user.getId());
+		model.addAttribute("folderList", folderList);
+
+		if (result.hasErrors()) {
+			return "create-doc";
+		}
+		else {
+			ds.saveDocument(doc);
+			model.addAttribute("createDocSuccess", "Document created successfully.");
 			return "directory";
 			
 		}

@@ -72,7 +72,7 @@
         <form:input path="title" value="${currentDoc.title}" style="border:1px solid black;"/>
         <form:errors path="title"/>
         <br/>
-        <textarea name="content"  rows="40" cols="60" style="border:1px solid black;">${currentDoc.content}</textarea>
+        <form:textarea path="contents"  rows="40" cols="60" style="border:1px solid black;" value="${currentDoc.content}"></form:textarea>
         <br/>
         <input type="submit" value="Save" name="submit" id="submit"/>
         
