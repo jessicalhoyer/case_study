@@ -185,7 +185,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("/delete-doc/{id}")
-	public String confirmDelete(@PathVariable("id") int id, Model model,
+	public String confirmDocDelete(@PathVariable("id") int id, Model model,
 			HttpSession session) {
 		Document doc = ds.findById(id);
 		model.addAttribute("currentDoc", doc);
@@ -205,6 +205,26 @@ public class HomeController {
 		return "directory";
 	}
 	
+	@GetMapping("/delete-folder/{id}")
+	public String confirmFolderDelete(@PathVariable("id") int id, Model model,
+			HttpSession session) {
+		Folder folder = fs.findById(id);
+		model.addAttribute("currentFolder", folder);
+		
+		return "delete-folder";
+	}
+	
+	@PostMapping("/delete-folder")
+	public String deleteFolder(@RequestParam("folder_id") int id,
+			Model model, HttpSession session) {
+		User user = (User) session.getAttribute("currentUser");
+		List<Folder> folderList = fs.listAllFolders(user.getId());
+		model.addAttribute("folderList", folderList);
+		
+		fs.deleteFolder(id);
+		model.addAttribute("folderDeleteSuccess", "Folder deleted successfully");
+		return "directory";
+	}
 	
 	@GetMapping("/create-folder")
 	public String showCreateFolder(Model model) {

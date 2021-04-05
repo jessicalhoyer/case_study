@@ -48,35 +48,21 @@
 			</ul>
 		</div>
         
-        <div class="flex-container">
-        
-        <section class="organizer">
-	        <c:forEach items="${folderList}" var="folder">
-	        <p class="folder"><a href="${pageContext.request.contextPath}/edit-folder/${folder.id}">${folder.title}</a></p>
-	        	
-	        	<c:forEach items="${folder.documents}" var="doc">
-		        <p class="doc"><a href="${pageContext.request.contextPath}/edit-doc/${doc.id}">${doc.title}</a></p>
-		        </c:forEach>
-	        
-	        </c:forEach>
-        </section>
+        <div class="flex-container"> 
         
         <section class="body">
         
         <h2>${currentFolder.title}</h2>
         
-        <form:form action="${pageContext.request.contextPath}/edit-folder" method="post" modelAttribute="editFolder">
+        <form action="${pageContext.request.contextPath}/delete-folder" method="post">
         
+        <p>Are you sure you want to delete ${currentFolder.title}?</p>
+
+		<input type="hidden" name="folder_id" value="${currentFolder.id}"/>
+		
+        <input type="submit" value="Delete" name="submit" id="submit"/>
         
-        <label for="title">Title</label>
-        <form:input path="title" value="${currentFolder.title}" style="border:1px solid black;"/>
-        <form:errors path="title"/>
-        <br/>
-        <input type="submit" value="Save" name="submit" id="submit"/>
-        
-        <a href="${pageContext.request.contextPath}/delete-folder/${currentFolder.id}">Delete</a>
-        
-        </form:form>
+        </form>
 
         </section>
         

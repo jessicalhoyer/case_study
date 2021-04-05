@@ -23,5 +23,7 @@ public interface FolderRepository extends JpaRepository<Folder, Integer> {
 	@Query("UPDATE Folder f SET f.title = :new_title WHERE f.id = :id")
 	public void editFolder(@Param("new_title") String title,
 			@Param("id") int id);
+	
+	public void deleteById(int id);
 
 }

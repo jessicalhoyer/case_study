@@ -32,5 +32,9 @@ public class FolderService {
 	public void editFolder(String title, int id) {
 		folderRepository.editFolder(title, id);
 	}
+	
+	public void deleteFolder(int id) {
+		folderRepository.deleteById(id);
+	}
 
 }
