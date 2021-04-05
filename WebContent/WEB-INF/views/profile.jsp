@@ -38,8 +38,14 @@
 
         <div id="wrapper">
 
-            <p>Successful login page.</p>
-                        
+            <p><b>Username:</b> ${currentUser.username}</p>
+            
+            <p>Maybe other profile information here as well. To be decided based on time constraints!</p>
+            
+            <a href="edit-profile/${currentUser.id}">Edit Profile</a>
+            <a href="delete-profile/${currentUser.id}">Delete Account</a>
+            
+			<p>${profileEditSuccess}</p>
             
         </div>
 

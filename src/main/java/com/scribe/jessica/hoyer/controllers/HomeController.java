@@ -91,6 +91,23 @@ public class HomeController {
 		return "profile";
 	}
 	
+	@GetMapping("/edit-profile/{id}")
+	public String editProfile(@PathVariable("id") int id, Model model) {
+		
+		// not finished
+		
+		return "profile";
+	}
+	
+	@PostMapping("edit-profile")
+	public String processEditProfile(Model model) {
+		
+		// not finished
+		
+		model.addAttribute("profileEditSuccess", "Profile updated successfully");
+		return "profile";
+	}
+	
 	@GetMapping("/directory")
 	public String showDirectory(HttpSession session, Model model) {
 		
