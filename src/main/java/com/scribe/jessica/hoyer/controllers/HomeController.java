@@ -122,7 +122,7 @@ public class HomeController {
 		return "doc";
 	}
 	
-	@GetMapping("/edit/{id}")
+	@GetMapping("/edit-doc/{id}")
 	public String editDocument(@PathVariable("id") int id, Model model,
 			HttpSession session) {
 		Document doc = ds.findById(id);
@@ -133,10 +133,10 @@ public class HomeController {
 		List<Folder> folderList = fs.listAllFolders(user.getId());
 		model.addAttribute("folderList", folderList);
 		
-		return "edit";
+		return "edit-doc";
 	}
 	
-	@PostMapping("/edit")
+	@PostMapping("/edit-doc")
 	public String processDocument(@Valid @ModelAttribute("editDoc") Document doc,
 			Model model, HttpSession session, BindingResult result) {
 		User user = (User) session.getAttribute("currentUser");
@@ -144,11 +144,42 @@ public class HomeController {
 		model.addAttribute("folderList", folderList);
 		
 		if (result.hasErrors()) {
-			return "edit";
+			return "edit-doc";
 		}
 		else {
 			ds.editDocument(doc.getTitle(), doc.getContent(), doc.getId());
-			model.addAttribute("editSuccess", "Document successfully edited");
+			model.addAttribute("docEditSuccess", "Document successfully edited");
+			return "directory";
+		}
+	}
+	
+	@GetMapping("/edit-folder/{id}")
+	public String editFolder(@PathVariable("id") int id, Model model,
+			HttpSession session) {
+		Folder folder = fs.findById(id);
+		model.addAttribute("currentFolder", folder);
+		model.addAttribute("editFolder", new Folder());
+		
+		User user = (User) session.getAttribute("currentUser");
+		List<Folder> folderList = fs.listAllFolders(user.getId());
+		model.addAttribute("folderList", folderList);
+		
+		return "edit-folder";
+	}
+	
+	@PostMapping("/edit-folder")
+	public String processFolder(@Valid @ModelAttribute("editFolder") Folder folder,
+			Model model, HttpSession session, BindingResult result) {
+		User user = (User) session.getAttribute("currentUser");
+		List<Folder> folderList = fs.listAllFolders(user.getId());
+		model.addAttribute("folderList", folderList);
+		
+		if (result.hasErrors()) {
+			return "edit-folder";
+		}
+		else {
+			fs.editFolder(folder.getTitle(), folder.getId());
+			model.addAttribute("folderEditSuccess", "Folder successfully edited");
 			return "directory";
 		}
 	}
@@ -196,8 +227,10 @@ public class HomeController {
 		User user = (User) session.getAttribute("currentUser");
 		List<Folder> folderList = fs.listAllFolders(user.getId());
 		model.addAttribute("folderList", folderList);
+		
 
 		if (result.hasErrors()) {
+			model.addAttribute("errorList", result.getAllErrors());
 			return "create-doc";
 		}
 		else {

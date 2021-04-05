@@ -24,5 +24,13 @@ public class FolderService {
 	public List<Folder> listAllFolders(int id) {
 		return (List<Folder>) folderRepository.findByUserId(id);
 	}
+	
+	public Folder findById(int id) {
+		return folderRepository.findById(id);
+	}
+	
+	public void editFolder(String title, int id) {
+		folderRepository.editFolder(title, id);
+	}
 
 }

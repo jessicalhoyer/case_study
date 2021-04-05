@@ -65,14 +65,14 @@
         
         <h2>${currentDoc.title}</h2>
         
-        <form:form action="${pageContext.request.contextPath}/edit" method="post" modelAttribute="editDoc">
+        <form:form action="${pageContext.request.contextPath}/edit-doc" method="post" modelAttribute="editDoc">
         
         
         <label for="title">Title</label>
         <form:input path="title" value="${currentDoc.title}" style="border:1px solid black;"/>
         <form:errors path="title"/>
         <br/>
-        <form:textarea path="contents"  rows="40" cols="60" style="border:1px solid black;" value="${currentDoc.content}"></form:textarea>
+        <form:textarea path="content"  rows="40" cols="60" style="border:1px solid black;" value="${currentDoc.content}"></form:textarea>
         <br/>
         <input type="submit" value="Save" name="submit" id="submit"/>
         

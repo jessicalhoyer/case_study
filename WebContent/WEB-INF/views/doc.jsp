@@ -43,7 +43,7 @@
 				<li><a href="${pageContext.request.contextPath}/create-folder">Create Folder</a></li>
 				<li><a href="${pageContext.request.contextPath}/create-doc">Create Document</a></li>
 				<li><a href="sort/${currentUser.id}">Sort</a></li>
-				<li><a href="${pageContext.request.contextPath}/edit/${currentDoc.id}">Edit Mode</a></li>
+				<li><a href="${pageContext.request.contextPath}/edit-doc/${currentDoc.id}">Edit Mode</a></li>
 			</ul>
 		</div>
         
@@ -51,7 +51,7 @@
         
         <section class="organizer">
 	        <c:forEach items="${folderList}" var="folder">
-	        <p class="folder">${folder.title}</p>
+	        <p class="folder"><a href="/edit-folder/${folder.id}">${folder.title}</a></p>
 	        	
 	        	<c:forEach items="${folder.documents}" var="doc">
 		        <p class="doc"><a href="${doc.id}">${doc.title}</a></p>

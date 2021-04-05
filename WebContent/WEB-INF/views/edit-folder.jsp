@@ -44,37 +44,37 @@
 				<li><a href="${pageContext.request.contextPath}/create-folder">Create Folder</a></li>
 				<li><a href="${pageContext.request.contextPath}/create-doc">Create Document</a></li>
 				<li><a href="${pageContext.request.contextPath}/sort/${currentUser.id}">Sort</a></li>
+				<li><a href="${pageContext.request.contextPath}/doc/${currentDoc.id}">View Mode</a></li>
 			</ul>
 		</div>
         
         <div class="flex-container">
         
+        <section class="organizer">
+	        <c:forEach items="${folderList}" var="folder">
+	        <p class="folder">${folder.title}</p>
+	        	
+	        	<c:forEach items="${folder.documents}" var="doc">
+		        <p class="doc"><a href="${doc.id}">${doc.title}</a></p>
+		        </c:forEach>
+	        
+	        </c:forEach>
+        </section>
+        
         <section class="body">
         
-        <h2>Create New Document</h2>
+        <h2>${currentFolder.title}</h2>
         
-        <form:form action="./create-doc" method="post" modelAttribute="newDoc">
+        <form:form action="${pageContext.request.contextPath}/edit-folder" method="post" modelAttribute="editFolder">
         
         
         <label for="title">Title</label>
-        <form:input path="title" style="border:1px solid black;"/>
+        <form:input path="title" value="${currentFolder.title}" style="border:1px solid black;"/>
         <form:errors path="title"/>
         <br/>
-        <label for="folder">Folder</label>
-        <form:select path="folder">
-        	<c:forEach items="${folderList}" var="folders">
-        		<form:option value="${folders.id}">${folders.title}</form:option>
-        	</c:forEach>
-        </form:select>
-        
-        <br/>
-        <form:textarea path="content" rows="40" cols="60" style="border:1px solid black;"/>
-        <br/>
-        <input type="submit" value="Create" name="submit" id="submit"/>
+        <input type="submit" value="Save" name="submit" id="submit"/>
         
         </form:form>
-        
-        <p>${errorList}</p>
 
         </section>
         

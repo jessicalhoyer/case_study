@@ -61,7 +61,9 @@
         
         <section class="body">
         
-        <p>${editSuccess}</p>
+        <p>${docEditSuccess}</p>
+        
+        <p>${folderEditSuccess}</p>
         
         <p>${createFolderSuccess}</p>
         
