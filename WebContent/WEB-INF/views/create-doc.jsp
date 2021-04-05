@@ -68,7 +68,7 @@
         </form:select>
         
         <br/>
-        <form:textarea path="content" rows="40" cols="60" style="border:1px solid black;"/>
+        <form:textarea path="content" rows="10" cols="70" style="border:1px solid black;"/>
         <br/>
         <input type="submit" value="Create" name="submit" id="submit"/>
         

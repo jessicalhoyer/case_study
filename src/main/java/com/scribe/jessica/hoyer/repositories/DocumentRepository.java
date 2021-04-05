@@ -25,6 +25,8 @@ public interface DocumentRepository extends JpaRepository<Document, Integer> {
 			@Param("new_content") String content,
 			@Param("id") int id);
 	
+	public void deleteById(int id);
+	
 //	public void saveDocumentById(int id);
 
 }

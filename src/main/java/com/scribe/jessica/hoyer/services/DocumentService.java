@@ -36,5 +36,9 @@ public class DocumentService {
 	public void editDocument(String title, String content, int id) {
 		documentRepository.editDocument(title, content, id);
 	}
+	
+	public void deleteDocument(int id) {
+		documentRepository.deleteById(id);
+	}
 
 }
