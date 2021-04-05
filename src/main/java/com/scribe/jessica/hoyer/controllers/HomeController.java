@@ -79,7 +79,7 @@ public class HomeController {
 		User user = us.findByUsername(username);
 		if (user != null && password.equals(user.getPassword())) {
 			session.setAttribute("currentUser", user);
-			return "redirect:/success";
+			return "redirect:/directory";
 		}
 		model.addAttribute("loginFailed", "Login failed, please try again.");
 		return "login";

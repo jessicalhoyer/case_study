@@ -44,7 +44,7 @@
 				<li><a href="${pageContext.request.contextPath}/create-folder">Create Folder</a></li>
 				<li><a href="${pageContext.request.contextPath}/create-doc">Create Document</a></li>
 				<li><a href="${pageContext.request.contextPath}/sort/${currentUser.id}">Sort</a></li>
-				<li><a href="${pageContext.request.contextPath}/directory">View Mode</a></li>
+				<li><a href="${pageContext.request.contextPath}/directory">Directory</a></li>
 			</ul>
 		</div>
         
