@@ -169,19 +169,25 @@ public class HomeController {
 	
 	@PostMapping("/edit-doc")
 	public String processDocument(@Valid @ModelAttribute("editDoc") Document doc,
-			Model model, HttpSession session, BindingResult result) {
+			Model model, HttpSession session, BindingResult result,
+			@RequestParam("content") String content) {
 		User user = (User) session.getAttribute("currentUser");
 		List<Folder> folderList = fs.listAllFolders(user.getId());
 		model.addAttribute("folderList", folderList);
+		doc.setContent(content);
 		
-		if (result.hasErrors()) {
-			return "edit-doc";
-		}
-		else {
-			ds.editDocument(doc.getTitle(), doc.getContent(), doc.getId());
-			model.addAttribute("docEditSuccess", "Document successfully edited");
-			return "directory";
-		}
+		System.out.println(doc.toString());
+		
+//		if (result.hasErrors()) {
+//			return "edit-doc";
+//		}
+//		else {
+//			ds.saveDocument(doc);
+//			model.addAttribute("docEditSuccess", "Document successfully edited");
+//			return "directory";
+//		}
+		
+		return "edit-doc";
 	}
 	
 	@GetMapping("/edit-folder/{id}")
@@ -205,13 +211,15 @@ public class HomeController {
 		List<Folder> folderList = fs.listAllFolders(user.getId());
 		model.addAttribute("folderList", folderList);
 		
+		folder.setUser(user);
+		
 		if (result.hasErrors()) {
 			return "edit-folder";
 		}
 		else {
-			fs.editFolder(folder.getTitle(), folder.getId());
+			fs.saveFolder(folder);
 			model.addAttribute("folderEditSuccess", "Folder successfully edited");
-			return "directory";
+			return "redirect:/directory";
 		}
 	}
 	
@@ -233,7 +241,7 @@ public class HomeController {
 		
 		ds.deleteDocument(id);
 		model.addAttribute("docDeleteSuccess", "Document deleted successfully");
-		return "directory";
+		return "redirect:/directory";
 	}
 	
 	@GetMapping("/delete-folder/{id}")
@@ -254,7 +262,7 @@ public class HomeController {
 		
 		fs.deleteFolder(id);
 		model.addAttribute("folderDeleteSuccess", "Folder deleted successfully");
-		return "directory";
+		return "redirect:/directory";
 	}
 	
 	@GetMapping("/create-folder")
@@ -278,7 +286,7 @@ public class HomeController {
 			model.addAttribute("folderList", folderList);
 			fs.saveFolder(folder);
 			model.addAttribute("folderCreateSuccess", "Folder created successfully.");
-			return "directory";
+			return "redirect:/directory";
 			
 		}
 	}
@@ -309,39 +317,9 @@ public class HomeController {
 		else {
 			ds.saveDocument(doc);
 			model.addAttribute("docCreateSuccess", "Document created successfully.");
-			return "directory";
+			return "redirect:/directory";
 		}
 	}
-	
-	@InitBinder
-	public void initBinder(WebDataBinder dataBinder) {
-		dataBinder.setDisallowedFields("fold");
-	}
-	
-//	@PostMapping("/create-doc")
-//	public String processCreateDoc(@Valid @ModelAttribute("newDoc") Document doc,
-//			BindingResult result, Model model, HttpSession session) {
-//		User user = (User) session.getAttribute("currentUser");
-//		List<Folder> folderList = fs.listAllFolders(user.getId());
-//		model.addAttribute("folderList", folderList);
-//		
-////		Folder folder = (Folder) model.getAttribute("folder");
-////		int folder_id = Integer.parseInt((String) model.getAttribute("folder"));
-////		Folder folder = fs.findById(folder_id);
-////		doc.setFolder(folder);
-//		
-//
-//		if (result.hasErrors()) {
-//			model.addAttribute("errorList", result.getAllErrors());
-//			return "create-doc";
-//		}
-//		else {
-//			ds.saveDocument(doc);
-//			model.addAttribute("docCreateSuccess", "Document created successfully.");
-//			return "directory";
-//			
-//		}
-//	}
 	
 	@GetMapping("/success")
 	public String showSuccess() {

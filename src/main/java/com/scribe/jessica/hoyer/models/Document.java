@@ -70,6 +70,11 @@ public class Document {
 	public void setFold(Folder folder) {
 		this.folder = folder;
 	}
+
+	@Override
+	public String toString() {
+		return "Document [id=" + id + ", title=" + title + ", content=" + content + ", folder=" + folder + "]";
+	}
 	
 	
 

@@ -72,8 +72,19 @@
         <form:input path="title" value="${currentDoc.title}" style="border:1px solid black;"/>
         <form:errors path="title"/>
         <br/>
-        <form:textarea path="content"  rows="10" cols="70" style="border:1px solid black;" value="${currentDoc.content}"></form:textarea>
+        
+        <label for="current-folder">Current Folder</label> ${currentFolder.title}
         <br/>
+        
+        <label for="folder">New Folder</label>
+        <form:select path="folder">
+        		<form:options name="folder" items="${folderList}" itemValue="id" itemLabel="title"/>
+        </form:select>
+        <br/>
+        
+        <textarea name="content" rows="10" cols="70" style="border:1px solid black;">${currentDoc.content}</textarea>
+        <br/>
+
         <input type="submit" value="Save" name="submit" id="submit"/>
         
         <a href="${pageContext.request.contextPath}/delete-doc/${currentDoc.id}">Delete</a>
