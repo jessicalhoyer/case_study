@@ -1,6 +1,5 @@
 package com.scribe.jessica.hoyer.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;

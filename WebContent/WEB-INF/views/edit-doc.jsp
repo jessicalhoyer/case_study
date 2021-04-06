@@ -43,7 +43,6 @@
 			<ul>
 				<li><a href="${pageContext.request.contextPath}/create-folder">Create Folder</a></li>
 				<li><a href="${pageContext.request.contextPath}/create-doc">Create Document</a></li>
-				<li><a href="${pageContext.request.contextPath}/sort/${currentUser.id}">Sort</a></li>
 				<li><a href="${pageContext.request.contextPath}/doc/${currentDoc.id}">View Mode</a></li>
 			</ul>
 		</div>
@@ -73,7 +72,7 @@
         <form:errors path="title"/>
         <br/>
         
-        <label for="current-folder">Current Folder</label> ${currentFolder.title}
+        <label for="current-folder">Current Folder</label> ${currentDoc.folder.getTitle()}
         <br/>
         
         <label for="folder">New Folder</label>

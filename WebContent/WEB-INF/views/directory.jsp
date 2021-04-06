@@ -42,7 +42,6 @@
 			<ul>
 				<li><a href="${pageContext.request.contextPath}/create-folder">Create Folder</a></li>
 				<li><a href="${pageContext.request.contextPath}/create-doc">Create Document</a></li>
-				<li><a href="sort/${currentUser.id}">Sort</a></li>
 			</ul>
 		</div>
         
