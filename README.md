@@ -4,7 +4,7 @@ My case study project for my TEKSystems Full Stack Java Developer bootcamp.
 
 ## Description
 
-Tentatively titled "Scribe", this will be a Java Spring MVC application that will allow users to create an account to save and edit documents and store them in different folders.
+Scribe is a Java Spring MVC application that will allow users to register an account that will let them create, edit, and delete documents and store them in different folders.
 
 ## Features
 
@@ -14,7 +14,9 @@ Tentatively titled "Scribe", this will be a Java Spring MVC application that wil
 * Folder editing
 * Document editing
   * Potentially with bold, italic, blockquote, and code block features
-* Folder and document organization
+* Move documents to different folders
+* Delete folders
+* Delete documents
 
 ## Skills
 
@@ -28,7 +30,7 @@ Tentatively titled "Scribe", this will be a Java Spring MVC application that wil
 
 ## Status
 
-In the mid-stages of development. Currently transitioning to a Java Spring MVC project and importing the front-end coding.
+In the mid-stages of development. Currently implementing CRUD.
 
 ## Credit
 
