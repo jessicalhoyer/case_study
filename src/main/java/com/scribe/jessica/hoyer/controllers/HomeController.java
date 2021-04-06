@@ -287,7 +287,9 @@ public class HomeController {
 		List<Folder> folderList = fs.listAllFolders(user.getId());
 		model.addAttribute("folderList", folderList);
 		
-		
+//		Folder folder = (Folder) model.getAttribute("folder");
+//		int folder_id = Integer.parseInt(model.getAttribute("folder"));
+//		doc.setFolder(folder);
 
 		if (result.hasErrors()) {
 			model.addAttribute("errorList", result.getAllErrors());
