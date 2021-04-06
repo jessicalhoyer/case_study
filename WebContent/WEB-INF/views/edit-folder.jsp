@@ -71,6 +71,7 @@
         <form:input path="title" value="${currentFolder.title}" style="border:1px solid black;"/>
         <form:errors path="title"/>
         <br/>
+        <form:hidden path="id" value="${currentFolder.id}"/>
         <input type="submit" value="Save" name="submit" id="submit"/>
         
         <a href="${pageContext.request.contextPath}/delete-folder/${currentFolder.id}">Delete</a>

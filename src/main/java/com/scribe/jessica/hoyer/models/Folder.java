@@ -74,6 +74,11 @@ public class Folder {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	@Override
+	public String toString() {
+		return "Folder [id=" + id + ", title=" + title + ", documents=" + documents + ", user=" + user + "]";
+	}
 	
 	
 

@@ -15,7 +15,6 @@ public interface FolderRepository extends JpaRepository<Folder, Integer> {
 
 	public Folder findById(int id);
 	
-//	@Query("SELECT f FROM Folder f WHERE f.user_id = :u_id")
 	public List<Folder> findByUserId(int id);
 	
 	@Transactional

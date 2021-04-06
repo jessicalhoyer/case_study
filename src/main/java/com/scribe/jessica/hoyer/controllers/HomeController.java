@@ -213,14 +213,17 @@ public class HomeController {
 		
 		folder.setUser(user);
 		
+		System.out.println(folder.toString());
+		
 		if (result.hasErrors()) {
 			return "edit-folder";
 		}
 		else {
-			fs.saveFolder(folder);
+			fs.editFolder(folder.getTitle(), folder.getId());
 			model.addAttribute("folderEditSuccess", "Folder successfully edited");
 			return "redirect:/directory";
 		}
+		
 	}
 	
 	@GetMapping("/delete-doc/{id}")
