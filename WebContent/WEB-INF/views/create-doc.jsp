@@ -63,7 +63,7 @@
         <label for="folder">Folder</label>
         <form:select path="folder">
         	<c:forEach items="${folderList}" var="folders">
-        		<form:option value="${folders}">${folders.title}</form:option>
+        		<form:options name="folder" items="${folderList}" itemValue="id" itemLabel="title"/>
         	</c:forEach>
         </form:select>
         
@@ -73,8 +73,6 @@
         <input type="submit" value="Create" name="submit" id="submit"/>
         
         </form:form>
-        
-        <p>${errorList}</p>
 
         </section>
         

@@ -67,7 +67,7 @@ public class Document {
 		return folder;
 	}
 
-	public void setFolder(Folder folder) {
+	public void setFold(Folder folder) {
 		this.folder = folder;
 	}
 	

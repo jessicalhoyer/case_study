@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -106,6 +108,18 @@ public class HomeController {
 		
 		model.addAttribute("profileEditSuccess", "Profile updated successfully");
 		return "profile";
+	}
+	
+	@GetMapping("/delete-profile")
+	public String confirmUserDelete() {
+		return "delete-profile";
+	}
+	
+	@PostMapping("/delete-profile")
+	public String deleteUser(Model model, HttpSession session) {
+		User user = (User) session.getAttribute("currentUser");
+		us.deleteUser(user);
+		return "index";
 	}
 	
 	@GetMapping("/directory")
@@ -282,26 +296,52 @@ public class HomeController {
 	
 	@PostMapping("/create-doc")
 	public String processCreateDoc(@Valid @ModelAttribute("newDoc") Document doc,
-			BindingResult result, Model model, HttpSession session) {
+			BindingResult result, Model model, HttpSession session, 
+			@RequestParam("folder") String folderId) {
+		doc.setFold(fs.findById(Integer.parseInt(folderId)));
 		User user = (User) session.getAttribute("currentUser");
 		List<Folder> folderList = fs.listAllFolders(user.getId());
 		model.addAttribute("folderList", folderList);
-		
-//		Folder folder = (Folder) model.getAttribute("folder");
-//		int folder_id = Integer.parseInt(model.getAttribute("folder"));
-//		doc.setFolder(folder);
 
 		if (result.hasErrors()) {
-			model.addAttribute("errorList", result.getAllErrors());
 			return "create-doc";
 		}
 		else {
 			ds.saveDocument(doc);
 			model.addAttribute("docCreateSuccess", "Document created successfully.");
 			return "directory";
-			
 		}
 	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder dataBinder) {
+		dataBinder.setDisallowedFields("fold");
+	}
+	
+//	@PostMapping("/create-doc")
+//	public String processCreateDoc(@Valid @ModelAttribute("newDoc") Document doc,
+//			BindingResult result, Model model, HttpSession session) {
+//		User user = (User) session.getAttribute("currentUser");
+//		List<Folder> folderList = fs.listAllFolders(user.getId());
+//		model.addAttribute("folderList", folderList);
+//		
+////		Folder folder = (Folder) model.getAttribute("folder");
+////		int folder_id = Integer.parseInt((String) model.getAttribute("folder"));
+////		Folder folder = fs.findById(folder_id);
+////		doc.setFolder(folder);
+//		
+//
+//		if (result.hasErrors()) {
+//			model.addAttribute("errorList", result.getAllErrors());
+//			return "create-doc";
+//		}
+//		else {
+//			ds.saveDocument(doc);
+//			model.addAttribute("docCreateSuccess", "Document created successfully.");
+//			return "directory";
+//			
+//		}
+//	}
 	
 	@GetMapping("/success")
 	public String showSuccess() {
