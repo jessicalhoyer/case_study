@@ -178,16 +178,18 @@ public class HomeController {
 		model.addAttribute("folderList", folderList);
 		doc.setContent(content);
 		
-		System.out.println(doc.toString());
+//		System.out.println(doc.toString());
 		
 		if (result.hasErrors()) {
 			return "edit-doc";
 		}
 		else {
-			ds.saveDocument(doc);
+			ds.editDocument(doc.getTitle(), doc.getContent(), doc.getId());
 			model.addAttribute("docEditSuccess", "Document successfully edited");
 			return "redirect:/directory";
 		}
+		
+//		return "edit-doc";
 	}
 	
 	@GetMapping("/edit-folder/{id}")
