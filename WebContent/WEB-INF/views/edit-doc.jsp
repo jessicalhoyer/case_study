@@ -68,8 +68,8 @@
         
         
         <label for="title">Title</label>
-        <form:input path="title" value="${currentDoc.title}" style="border:1px solid black;"/>
-        <form:errors path="title"/>
+        <input type="text" name="title" value="${currentDoc.title}" style="border:1px solid black;"/>
+
         <br/>
         
         <label for="current-folder">Current Folder</label> ${currentDoc.folder.getTitle()}
@@ -91,6 +91,8 @@
         <a href="${pageContext.request.contextPath}/delete-doc/${currentDoc.id}">Delete</a>
         
         </form:form>
+        
+        <p>${titleBlank}</p>
 
         </section>
         

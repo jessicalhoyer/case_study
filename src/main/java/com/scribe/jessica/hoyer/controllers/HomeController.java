@@ -177,10 +177,17 @@ public class HomeController {
 			@RequestParam("folder") String folderId,
 			@RequestParam("id") int id,
 			Model model) {
-		Folder folder = fs.findById(Integer.parseInt(folderId));
-		ds.editDocument(title, content, folder, id);
-		model.addAttribute("docEditSuccess", "Document successfully edited");
-		return "redirect:/directory";
+		
+		if (!title.equals("")) {
+			Folder folder = fs.findById(Integer.parseInt(folderId));
+			ds.editDocument(title, content, folder, id);
+			model.addAttribute("docEditSuccess", "Document successfully edited");
+			return "redirect:/directory";
+		}
+		else {
+			model.addAttribute("titleBlank", "Title cannot be blank");
+			return "edit-doc";
+		}
 	}
 	
 	
