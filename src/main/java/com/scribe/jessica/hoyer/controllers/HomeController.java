@@ -149,20 +149,16 @@ public class HomeController {
 		if (message.equals("folderDelete=true")) {
 			model.addAttribute("folderDeleteSuccess", "Folder deleted successfully");
 		}
-		
-		// if folderList is empty display message
+		if (message.equals("docCreate=true")) {
+			model.addAttribute("docCreateSuccess", "Document created successfully");
+		}
 		
 		User user = (User) session.getAttribute("currentUser");
 		List<Folder> folderList = fs.listAllFolders(user.getId());
+		model.addAttribute("folderList", folderList);
 		
-		if (folderList != null) {
-			model.addAttribute("folderList", folderList);
-			return "directory";
-		}
-		else {
-			model.addAttribute("folderList", "Nothing to display.");
-			return "directory";
-		}
+		return "directory";
+		
 	}
 	
 	@GetMapping("/doc/{id}")

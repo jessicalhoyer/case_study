@@ -19,7 +19,7 @@ public class Document {
 	private int id;
 	
 	@Column(name="title", nullable=false)
-	@NotBlank
+	@NotBlank(message="Title cannot be blank")
 	private String title;
 	
 	@Column(name="content")

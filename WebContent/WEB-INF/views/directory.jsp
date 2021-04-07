@@ -48,14 +48,17 @@
         <div class="flex-container">
         
         <section class="organizer">
-	        <c:forEach items="${folderList}" var="folder">
-	        <p class="folder">${folder.title}</p>
-	        	
-	        	<c:forEach items="${folder.documents}" var="doc">
-		        <p class="doc"><a href="doc/${doc.id}">${doc.title}</a></p>
+        	<c:if test="${empty folderList}">
+        		<p>Nothing to display.</p>
+        	</c:if>
+        	<c:if test="${!empty folderList}">
+		        <c:forEach items="${folderList}" var="folder">
+		        <p class="folder">${folder.title}</p>
+		        	<c:forEach items="${folder.documents}" var="doc">
+			        <p class="doc"><a href="doc/${doc.id}">${doc.title}</a></p>
+			        </c:forEach>
 		        </c:forEach>
-	        
-	        </c:forEach>
+	        </c:if>
         </section>
         
         <section class="body">

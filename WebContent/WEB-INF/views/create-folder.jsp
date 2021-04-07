@@ -57,9 +57,10 @@
         <label for="title">Title</label>
         
         <form:input path="title" style="border:1px solid black;"/>
-        <form:errors path="title"/>
         <br/>
+        
         <input type="submit" value="Create" name="submit" id="submit"/>
+        <p><form:errors path="title"/></p>
         
         </form:form>
 

@@ -54,30 +54,31 @@
         
         <form action="./create-doc" method="post">
         
-        <c:if test="${currentUser.folders == null}">
+        <c:if test="${empty folderList}">
         	<p>Please create a folder before creating a document</p>
         </c:if>
         
-        <label for="title">Title</label>
-        <input type="text" name="title" style="border:1px solid black;"/>
-        <br/>
-        
-        <label for="folder">Folder</label>
-        <select name="folder">
-        	<c:forEach items="${folderList}" var="fol">
-        		<option value="${fol.id}">${fol.title}</option>
-        	</c:forEach>
-        </select>
-        
-        <br/>
-        <textarea name="content" rows="10" cols="70" style="border:1px solid black;"></textarea>
-        <br/>
-        <input type="submit" value="Create" name="submit" id="submit"/>
-        
-        </form>
+        <c:if test="${!empty folderList}">
+	        <label for="title">Title</label>
+	        <input type="text" name="title" style="border:1px solid black;"/>
+	        <br/>
+	        
+	        <label for="folder">Folder</label>
+	        <select name="folder">
+	        	<c:forEach items="${folderList}" var="fol">     		
+	        		<option value="${fol.id}">${fol.title}</option>
+	        	</c:forEach>
+	        </select>
+	        
+	        <br/>
+	        <textarea name="content" rows="10" cols="70" style="border:1px solid black;"></textarea>
+	        <br/>
+	        <input type="submit" value="Create" name="submit" id="submit"/>
+	        
+	        </form>
         
         <p>${titleBlank}</p>
-        <p>${folderBlank}</p>
+        </c:if>
 
 
         </section>

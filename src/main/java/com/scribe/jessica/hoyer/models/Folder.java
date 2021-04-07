@@ -23,7 +23,7 @@ public class Folder {
 	private int id;
 	
 	@Column(name="title", nullable=false)
-	@NotBlank
+	@NotBlank(message="Title cannot be blank")
 	private String title;
 	
 	@OneToMany(mappedBy = "folder", fetch = FetchType.EAGER)
