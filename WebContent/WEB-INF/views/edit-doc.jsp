@@ -75,10 +75,10 @@
         <label for="current-folder">Current Folder</label> ${currentDoc.folder.getTitle()}
         <br/>
         
-        <label for="folder">New Folder</label>
+        <label for="folder">Move to Folder</label>
         <select name="folder">
         	<c:forEach items="${folderList}" var="fol">
-        		<option value="${fol.id}">${fol.title}</option>
+        		<option value="${fol.id}" <c:if test="${currentDoc.folder.getId() == fol.id}"> selected</c:if> >${fol.title}</option>
         	</c:forEach>
         </select>
         <br/>
