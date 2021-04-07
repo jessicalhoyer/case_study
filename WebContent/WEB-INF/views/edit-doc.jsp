@@ -84,6 +84,8 @@
         <textarea name="content" rows="10" cols="70" style="border:1px solid black;">${currentDoc.content}</textarea>
         <br/>
 		
+		<form:hidden path="id" value="${currentDoc.id}"/>
+		
         <input type="submit" value="Save" name="submit" id="submit"/>
         
         <a href="${pageContext.request.contextPath}/delete-doc/${currentDoc.id}">Delete</a>

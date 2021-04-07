@@ -169,33 +169,20 @@ public class HomeController {
 		
 		return "edit-doc";
 	}
-	
+
 	@PostMapping("/edit-doc")
-	public String processDocument(@Valid @ModelAttribute("editDoc") Document doc,
-			Model model, HttpSession session, BindingResult result,
+	public String processDocument(
+			@RequestParam("title") String title,
 			@RequestParam("content") String content,
-			@RequestParam("folder") String folderId) {
-		doc.setFold(fs.findById(Integer.parseInt(folderId)));
-		User user = (User) session.getAttribute("currentUser");
-		List<Folder> folderList = fs.listAllFolders(user.getId());
-		model.addAttribute("folderList", folderList);
-		doc.setContent(content);
-		
-//		System.out.println(doc);
-		
-		if (result.hasErrors()) {
-			model.addAttribute("errorList", result.getAllErrors());
-			return "edit-doc";
-		}
-		else {
-			ds.editDocument(doc.getTitle(), content, doc.getFolder(),
-					doc.getId());
-			model.addAttribute("docEditSuccess", "Document successfully edited");
-			return "redirect:/directory";
-		}
-		
-//		return "edit-doc";
+			@RequestParam("folder") String folderId,
+			@RequestParam("id") int id,
+			Model model) {
+		Folder folder = fs.findById(Integer.parseInt(folderId));
+		ds.editDocument(title, content, folder, id);
+		model.addAttribute("docEditSuccess", "Document successfully edited");
+		return "redirect:/directory";
 	}
+	
 	
 	@GetMapping("/edit-folder/{id}")
 	public String editFolder(@PathVariable("id") int id, Model model,
