@@ -11,6 +11,8 @@
 body {
     font-size:0.9em;
     background-color:#08030C;
+    background-image:url(../images/simple_dashed.png);
+    background-attachment:fixed;
     font-family:'Quattrocento Sans',helvetica,sans-serif;
     margin-top:6em;
     color:#958F9A;

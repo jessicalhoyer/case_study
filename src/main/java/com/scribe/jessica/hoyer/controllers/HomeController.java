@@ -5,11 +5,13 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -29,6 +31,7 @@ import com.scribe.jessica.hoyer.services.FolderService;
 import com.scribe.jessica.hoyer.services.UserService;
 
 @Controller
+//@Validated
 public class HomeController {
 	public UserService us;
 	public DocumentService ds;
@@ -178,9 +181,10 @@ public class HomeController {
 		model.addAttribute("folderList", folderList);
 		doc.setContent(content);
 		
-//		System.out.println(doc.toString());
+//		System.out.println(doc);
 		
 		if (result.hasErrors()) {
+			model.addAttribute("errorList", result.getAllErrors());
 			return "edit-doc";
 		}
 		else {
@@ -214,8 +218,6 @@ public class HomeController {
 		model.addAttribute("folderList", folderList);
 		
 		folder.setUser(user);
-		
-		System.out.println(folder.toString());
 		
 		if (result.hasErrors()) {
 			return "edit-folder";
@@ -326,6 +328,11 @@ public class HomeController {
 		}
 	}
 	
+//	@InitBinder
+//	public void initBinder(WebDataBinder dataBinder) {
+//		dataBinder.setDisallowedFields("folder");
+//	}
+	
 	@GetMapping("/success")
 	public String showSuccess() {
 		return "success";
@@ -340,7 +347,7 @@ public class HomeController {
 	public String processLogout(HttpSession session, Model model) {
 		session.setAttribute("currentUser", null);
 		model.addAttribute("logoutSuccess", "You have successfully logged out");
-		return "login";
+		return "redirect:/login";
 	}
 
 }
