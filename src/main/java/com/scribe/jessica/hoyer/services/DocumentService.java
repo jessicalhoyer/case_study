@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.scribe.jessica.hoyer.models.Document;
+import com.scribe.jessica.hoyer.models.Folder;
 import com.scribe.jessica.hoyer.repositories.DocumentRepository;
 
 @Service
@@ -33,8 +34,8 @@ public class DocumentService {
 		return documentRepository.findById(id);
 	}
 	
-	public void editDocument(String title, String content, int id) {
-		documentRepository.editDocument(title, content, id);
+	public void editDocument(String title, String content, Folder folder, int id) {
+		documentRepository.editDocument(title, content, folder, id);
 	}
 	
 	public void deleteDocument(int id) {

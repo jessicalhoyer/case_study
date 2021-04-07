@@ -188,7 +188,8 @@ public class HomeController {
 			return "edit-doc";
 		}
 		else {
-			ds.editDocument(doc.getTitle(), doc.getContent(), doc.getId());
+			ds.editDocument(doc.getTitle(), content, doc.getFolder(),
+					doc.getId());
 			model.addAttribute("docEditSuccess", "Document successfully edited");
 			return "redirect:/directory";
 		}
