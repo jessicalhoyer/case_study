@@ -64,19 +64,20 @@
         
         <h2>${currentFolder.title}</h2>
         
-        <form:form action="${pageContext.request.contextPath}/edit-folder" method="post" modelAttribute="editFolder">
+        <form action="${pageContext.request.contextPath}/edit-folder" method="post">
         
         
         <label for="title">Title</label>
-        <form:input path="title" value="${currentFolder.title}" style="border:1px solid black;"/>
-        <form:errors path="title"/>
+        <input type="text" name="title" value="${currentFolder.title}" style="border:1px solid black;"/>
         <br/>
-        <form:hidden path="id" value="${currentFolder.id}"/>
+        <input type="hidden" name="id" value="${currentFolder.id}"/>
         <input type="submit" value="Save" name="submit" id="submit"/>
         
         <a href="${pageContext.request.contextPath}/delete-folder/${currentFolder.id}">Delete</a>
         
-        </form:form>
+        </form>
+        
+        <p>${titleBlank}</p>
 
         </section>
         

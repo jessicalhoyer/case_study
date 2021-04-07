@@ -75,12 +75,12 @@
 	        <br/>
 	        <input type="submit" value="Create" name="submit" id="submit"/>
 	        
+	        <p>${titleBlank}</p>
+	        
+	   </c:if>
+	        
 	        </form>
-        
-        <p>${titleBlank}</p>
-        </c:if>
-
-
+	        
         </section>
         
         </div>

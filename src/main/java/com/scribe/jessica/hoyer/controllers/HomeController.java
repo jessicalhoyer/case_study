@@ -220,7 +220,6 @@ public class HomeController {
 			HttpSession session) {
 		Folder folder = fs.findById(id);
 		model.addAttribute("currentFolder", folder);
-		model.addAttribute("editFolder", new Folder());
 		
 		User user = (User) session.getAttribute("currentUser");
 		List<Folder> folderList = fs.listAllFolders(user.getId());
@@ -230,21 +229,28 @@ public class HomeController {
 	}
 	
 	@PostMapping("/edit-folder")
-	public String processFolder(@Valid @ModelAttribute("editFolder") Folder folder,
-			Model model, HttpSession session, BindingResult result) {
-		User user = (User) session.getAttribute("currentUser");
-		List<Folder> folderList = fs.listAllFolders(user.getId());
-		model.addAttribute("folderList", folderList);
+	public String processFolder(Model model, HttpSession session,
+			@RequestParam("title") String title,
+			@RequestParam("id") String id) {
+	
+//		folder.setUser(user);
 		
-		folder.setUser(user);
-		
-		if (result.hasErrors()) {
-			return "edit-folder";
-		}
-		else {
-			fs.editFolder(folder.getTitle(), folder.getId());
+		if (!title.equals("")) {
+
+			fs.editFolder(title, Integer.parseInt(id));
 			model.addAttribute("folderEditSuccess", "Folder successfully edited");
 			return "redirect:/directory";
+		}
+		else {
+			Folder folder = fs.findById(Integer.parseInt(id));
+			model.addAttribute("currentFolder", folder);
+			
+			User user = (User) session.getAttribute("currentUser");
+			List<Folder> folderList = fs.listAllFolders(user.getId());
+			model.addAttribute("folderList", folderList);
+			
+			model.addAttribute("titleBlank", "Title cannot be blank");
+			return "edit-folder";
 		}
 		
 	}
