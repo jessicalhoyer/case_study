@@ -64,7 +64,7 @@
         
         <h2>${currentDoc.title}</h2>
         
-        <form:form action="${pageContext.request.contextPath}/edit-doc" method="post" modelAttribute="editDoc">
+        <form:form action="${pageContext.request.contextPath}/edit-doc" method="post">
         
         
         <label for="title">Title</label>
@@ -76,15 +76,17 @@
         <br/>
         
         <label for="folder">New Folder</label>
-        <form:select path="folder">
-        		<form:options name="folder" items="${folderList}" itemValue="id" itemLabel="title"/>
-        </form:select>
+        <select name="folder">
+        	<c:forEach items="${folderList}" var="fol">
+        		<option value="${fol.id}">${fol.title}</option>
+        	</c:forEach>
+        </select>
         <br/>
         
         <textarea name="content" rows="10" cols="70" style="border:1px solid black;">${currentDoc.content}</textarea>
         <br/>
 		
-		<form:hidden path="id" value="${currentDoc.id}"/>
+		<input type="hidden" name="id" value="${currentDoc.id}"/>
 		
         <input type="submit" value="Save" name="submit" id="submit"/>
         

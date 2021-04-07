@@ -161,7 +161,6 @@ public class HomeController {
 			HttpSession session) {
 		Document doc = ds.findById(id);
 		model.addAttribute("currentDoc", doc);
-		model.addAttribute("editDoc", new Document());
 		
 		User user = (User) session.getAttribute("currentUser");
 		List<Folder> folderList = fs.listAllFolders(user.getId());
@@ -176,7 +175,7 @@ public class HomeController {
 			@RequestParam("content") String content,
 			@RequestParam("folder") String folderId,
 			@RequestParam("id") int id,
-			Model model) {
+			Model model, HttpSession session) {
 		
 		if (!title.equals("")) {
 			Folder folder = fs.findById(Integer.parseInt(folderId));
@@ -185,6 +184,13 @@ public class HomeController {
 			return "redirect:/directory";
 		}
 		else {
+			Document doc = ds.findById(id);
+			model.addAttribute("currentDoc", doc);
+			
+			User user = (User) session.getAttribute("currentUser");
+			List<Folder> folderList = fs.listAllFolders(user.getId());
+			model.addAttribute("folderList", folderList);
+			
 			model.addAttribute("titleBlank", "Title cannot be blank");
 			return "edit-doc";
 		}
