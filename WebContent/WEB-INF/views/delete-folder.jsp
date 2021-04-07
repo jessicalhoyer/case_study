@@ -55,7 +55,7 @@
         
         <form action="${pageContext.request.contextPath}/delete-folder" method="post">
         
-        <p>Are you sure you want to delete ${currentFolder.title}?</p>
+        <p>Are you sure you want to delete ${currentFolder.title}? All documents currently in this folder will be deleted as well!</p>
 
 		<input type="hidden" name="folder_id" value="${currentFolder.id}"/>
 		

@@ -52,24 +52,33 @@
         
         <h2>Create New Document</h2>
         
-        <form:form action="./create-doc" method="post" modelAttribute="newDoc">
+        <form action="./create-doc" method="post">
         
+        <c:if test="${currentUser.folders == null}">
+        	<p>Please create a folder before creating a document</p>
+        </c:if>
         
         <label for="title">Title</label>
-        <form:input path="title" style="border:1px solid black;"/>
-        <form:errors path="title"/>
+        <input type="text" name="title" style="border:1px solid black;"/>
         <br/>
+        
         <label for="folder">Folder</label>
-        <form:select path="folder">
-        		<form:options name="folder" items="${folderList}" itemValue="id" itemLabel="title"/>
-        </form:select>
+        <select name="folder">
+        	<c:forEach items="${folderList}" var="fol">
+        		<option value="${fol.id}">${fol.title}</option>
+        	</c:forEach>
+        </select>
         
         <br/>
-        <form:textarea path="content" rows="10" cols="70" style="border:1px solid black;"/>
+        <textarea name="content" rows="10" cols="70" style="border:1px solid black;"></textarea>
         <br/>
         <input type="submit" value="Create" name="submit" id="submit"/>
         
-        </form:form>
+        </form>
+        
+        <p>${titleBlank}</p>
+        <p>${folderBlank}</p>
+
 
         </section>
         

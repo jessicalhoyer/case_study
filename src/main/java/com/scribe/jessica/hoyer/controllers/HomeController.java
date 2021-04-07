@@ -126,7 +126,29 @@ public class HomeController {
 	}
 	
 	@GetMapping("/directory")
-	public String showDirectory(HttpSession session, Model model) {
+	public String showDirectory(Model model, HttpSession session){
+		// if folderList is empty display message
+		
+		User user = (User) session.getAttribute("currentUser");
+		List<Folder> folderList = fs.listAllFolders(user.getId());
+				
+		if (folderList != null) {
+			model.addAttribute("folderList", folderList);
+			return "directory";
+		}
+		else {
+			model.addAttribute("folderList", "Nothing to display.");
+			return "directory";
+		}
+	}
+	
+	@PostMapping("/directory?{message}")
+	public String showDirectoryMessage(@PathVariable("message") String message,
+			HttpSession session, Model model) {
+		
+		if (message.equals("folderDelete=true")) {
+			model.addAttribute("folderDeleteSuccess", "Folder deleted successfully");
+		}
 		
 		// if folderList is empty display message
 		
@@ -269,7 +291,7 @@ public class HomeController {
 		model.addAttribute("folderList", folderList);
 		
 		fs.deleteFolder(id);
-		model.addAttribute("folderDeleteSuccess", "Folder deleted successfully");
+		model.addAttribute("folderDelete", "true");
 		return "redirect:/directory";
 	}
 	
@@ -306,28 +328,57 @@ public class HomeController {
 		List<Folder> folderList = fs.listAllFolders(user.getId());
 		model.addAttribute("folderList", folderList);
 		
-		model.addAttribute("newDoc", new Document());
 		return "create-doc";
 	}
 	
 	@PostMapping("/create-doc")
-	public String processCreateDoc(@Valid @ModelAttribute("newDoc") Document doc,
-			BindingResult result, Model model, HttpSession session, 
+	public String processCreateDoc(Model model, HttpSession session,
+			@RequestParam("title") String title,
+			@RequestParam("content") String content,
 			@RequestParam("folder") String folderId) {
-		doc.setFold(fs.findById(Integer.parseInt(folderId)));
 		User user = (User) session.getAttribute("currentUser");
 		List<Folder> folderList = fs.listAllFolders(user.getId());
 		model.addAttribute("folderList", folderList);
-
-		if (result.hasErrors()) {
+		
+		Document doc = new Document();
+		doc.setFold(fs.findById(Integer.parseInt(folderId)));
+		doc.setTitle(title);
+		doc.setContent(content);
+		
+		if (title.equals("")) {
+			model.addAttribute("titleBlank", "Title cannot be blank");
+			return "create-doc";
+		}
+		else if (folderId.equals("")) {
+			model.addAttribute("folderBlank", "Please create a folder before creating a document.");
 			return "create-doc";
 		}
 		else {
 			ds.saveDocument(doc);
-			model.addAttribute("docCreateSuccess", "Document created successfully.");
+			model.addAttribute("docCreate", "true");
 			return "redirect:/directory";
 		}
+		
 	}
+	
+//	@PostMapping("/create-doc")
+//	public String processCreateDoc(@Valid @ModelAttribute("newDoc") Document doc,
+//			BindingResult result, Model model, HttpSession session, 
+//			@RequestParam("folder") String folderId) {
+//		doc.setFold(fs.findById(Integer.parseInt(folderId)));
+//		User user = (User) session.getAttribute("currentUser");
+//		List<Folder> folderList = fs.listAllFolders(user.getId());
+//		model.addAttribute("folderList", folderList);
+//
+//		if (result.hasErrors()) {
+//			return "create-doc";
+//		}
+//		else {
+//			ds.saveDocument(doc);
+//			model.addAttribute("docCreateSuccess", "Document created successfully.");
+//			return "redirect:/directory";
+//		}
+//	}
 	
 //	@InitBinder
 //	public void initBinder(WebDataBinder dataBinder) {
@@ -340,15 +391,9 @@ public class HomeController {
 	}
 	
 	@GetMapping("/logout")
-	public String showLogout() {
-		return "login";
-	}
-	
-	@PostMapping("/logout")
-	public String processLogout(HttpSession session, Model model) {
+	public String showLogout(HttpSession session, Model model) {
 		session.setAttribute("currentUser", null);
-		model.addAttribute("logoutSuccess", "You have successfully logged out");
+		model.addAttribute("logoutSuccess", "true");
 		return "redirect:/login";
 	}
-
 }

@@ -56,7 +56,6 @@
                 </div>
                 
                 <p>${loginFailed}</p>
-                <p>${logoutSuccess}</p>
             </form>
             
         </div>
