@@ -15,14 +15,15 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	public User findByUsername(String username);
 	
-	public void deleteById(int id);
+	public boolean deleteById(int id); // changed to boolean
 	
 	@Transactional
 	@Modifying
 	@Query("UPDATE User u SET u.username = :new_username, u.password = :new_password"
 			+"  WHERE u.id = :id")
-	public void editProfile(@Param("new_username") String username,
+	public boolean editProfile(@Param("new_username") String username,
 			@Param("new_password") String password,
 			@Param("id") int id);
+	// also changed to boolean
 	
 }

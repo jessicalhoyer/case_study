@@ -9,8 +9,8 @@ import org.mockito.Mockito;
 import static org.mockito.Mockito.anyString;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.anyObject;
+import static org.mockito.Mockito.any;
 
-import com.scribe.jessica.hoyer.exceptions.UsernameTakenException;
 import com.scribe.jessica.hoyer.models.User;
 import com.scribe.jessica.hoyer.repositories.UserRepository;
 import com.scribe.jessica.hoyer.services.UserService;
@@ -26,11 +26,15 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void testSaveUser() {
-		Mockito.when(userRepository.save(anyObject())).thenReturn(new User("testUser1", "testPass1", null));
-		User actual = userService.saveUser_testing(new User());
-		User expected = new User("testUser1", "testPass1", null);
-		assertEquals(expected, actual);
+	public void testSaveUser() {	
+//		Mockito.when(userRepository.save(anyObject())).thenReturn(new User("testUser1", "testPass1", null));
+//		User actual = userService.saveUser_test(new User());
+//		User expected = new User("testUser1", "testPass1", null);
+//		assertEquals(expected, actual);
+		
+		Mockito.when(userRepository.save(anyObject())).thenReturn(true);
+		User user = new User();
+		assertTrue(userService.saveUser_test(user));
 	}
 	
 	@Test
@@ -41,14 +45,16 @@ public class UserServiceTest {
 		assertEquals(expected, actual.getPassword());
 	}
 	
-	@Test
-	public void testDeleteUser() {
-		
-	}
-	
-	@Test
-	public void testEditProfile() {
-		
-	}
+//	public void testDeleteUser() {
+//		Mockito.when(userService.deleteUser_test(anyObject())).thenReturn(true);
+//		User user = new User();
+//		
+//	}
+//	
+//	@Test
+//	public void testEditProfile() {
+//		Mockito.when(userRepository.editProfile(anyString(), anyString(), any())).thenReturn(true);
+//		
+//	}
 
 }

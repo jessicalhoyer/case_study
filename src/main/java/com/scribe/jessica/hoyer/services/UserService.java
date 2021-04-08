@@ -19,16 +19,19 @@ public class UserService {
 	public void saveUser(User user) throws UsernameTakenException {
 		try {
 			userRepository.save(user);
-//			return user; // added this and changed return type from void to user
 		}
 		catch (Exception e) {
 			throw new UsernameTakenException("Username already taken");
 		}
 	}
 	
-	public User saveUser_testing(User user) {
-		userRepository.save(user);
-		return user;
+	public boolean saveUser_test(User user) {
+		if (userRepository.save(user) !=null) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	public User findByUsername(String username) {
@@ -39,12 +42,26 @@ public class UserService {
 		userRepository.delete(user);
 	}
 	
+	public User deleteUser_test(User user) {
+		userRepository.delete(user);
+		return user;
+	}
+	
 	public void editProfile(String username, String password, int id) throws UsernameTakenException {
 		try {
 			userRepository.editProfile(username, password, id);
 		}
 		catch (Exception e) {
 			throw new UsernameTakenException("Username already taken");
+		}
+	}
+	
+	public boolean editProfile_test(String username, String password, int id) {
+		if (userRepository.editProfile(username, password, id)) {
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 
