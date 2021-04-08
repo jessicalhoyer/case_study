@@ -31,7 +31,6 @@ import com.scribe.jessica.hoyer.services.FolderService;
 import com.scribe.jessica.hoyer.services.UserService;
 
 @Controller
-//@Validated
 public class HomeController {
 	public UserService us;
 	public DocumentService ds;
@@ -55,11 +54,16 @@ public class HomeController {
 		return "index";
 	}
 	
+	// show register page
 	@GetMapping("/register")
 	public String showRegister() {
 		return "register";
 	}
 	
+	/* REGISTER USER
+	 * validation checks: blank username, blank password, username already taken,
+	 * username between 2 and 30 characters, password between 4 and 20 characters
+	 */
 	@PostMapping("/register")
 	public String processRegister(Model model,
 			@RequestParam("username") String username,
@@ -70,6 +74,14 @@ public class HomeController {
 		}
 		if(password.equals("")) {
 			model.addAttribute("blankPassword", "Password cannot be blank");
+			return "register";
+		}
+		if (username.length() < 2 || username.length() > 30) {
+			model.addAttribute("usernameLength", "Username must be between 2 and 30 characters");
+			return "register";
+		}
+		if (password.length() < 4 || password.length() > 20) {
+			model.addAttribute("passwordLength", "Password must be between 4 and 20 characters");
 			return "register";
 		}
 		else {

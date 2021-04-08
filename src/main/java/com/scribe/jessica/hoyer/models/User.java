@@ -22,7 +22,7 @@ public class User {
 	private int id;
 	
 	@Column(name="username", length=50, nullable=false, unique=true)
-	@Size(min = 2, max = 50, message="Username must be between 2 and 50 characters")
+	@Size(min = 2, max = 30, message="Username must be between 2 and 50 characters")
 	@NotBlank(message="Username cannot be blank")
 	private String username;
 	

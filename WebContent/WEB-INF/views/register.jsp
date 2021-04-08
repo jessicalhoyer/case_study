@@ -62,6 +62,8 @@
                 <p>${blankUsername}</p>
                 <p>${takenUsername}</p>
                 <p>${blankPassword}</p>
+                <p>${usernameLength}</p>
+                <p>${passwordLength}</p>
                 
             </form>
             
