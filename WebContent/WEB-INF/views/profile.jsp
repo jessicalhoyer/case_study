@@ -37,15 +37,21 @@
 
 
         <div id="wrapper">
+        
+        	<section class="content">
+        	
+        	<h2>${currentUser.username}'s Profile</h2>
 
             <p><b>Username:</b> ${currentUser.username}</p>
             
             <p>Folder list and document list?</p>
             
-            <a href="edit-profile">Edit Profile</a>
-            <a href="delete-profile">Delete Account</a>
+            <a href="edit-profile" class="button">Edit Profile</a>
+            <a href="delete-profile" class="button">Delete Account</a>
             
 			<p>${profileEditSuccess}</p>
+			
+			</section>
             
         </div>
 

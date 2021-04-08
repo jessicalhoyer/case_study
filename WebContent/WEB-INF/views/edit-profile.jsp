@@ -38,29 +38,42 @@
 
 
         <div id="wrapper">
+        
+        <section class="content">
+        
+        <h2>Edit Profile</h2>
 
-            <form action="./edit-profile" method="post">
+            <form class="center" action="./edit-profile" method="post">
             
-            	<label for="username">Username</label>
-            	<input type="text" name="username" value="${currentUser.username}"/>
-            	<br/>
-            	<label for="password">Password</label>
-            	<input type="password" name="password"/>
-            	<br/>
-            	<label for="c-password">Confirm Password</label>
-            	<input type="password" name="c-password"/>
+            	<div class="line">
+	            	<label for="username">Username</label>
+	            	<input type="text" name="username" value="${currentUser.username}"/>
+            	</div>
             	
-            	<input type="submit" value="Submit" name="submit"/>
+            	<div class="line">
+	            	<label for="password">Password</label>
+	            	<input type="password" name="password"/>
+            	</div>
+            	
+            	<div class="line">
+	            	<label for="c-password">Confirm Password</label>
+	            	<input type="password" name="c-password"/>
+            	</div>
+            	
+            	<div class="line">
+            		<input type="submit" value="Submit" name="submit"/>
+            		<a href="profile" class="button">Cancel</a>
+            	</div>
             	
             <p>${usernameBlank}</p>
             <p>${usernameTaken}</p>
+            <p>${passwordBlank}</p>
             <p>${passwordMismatch}</p>
+            <p>${profileEditSuccess}</p>
             
             </form>
-            
-            <a href="profile">Back to Profile</a>
-            
-			<p>${profileEditSuccess}</p>
+			
+			</section>
             
         </div>
 

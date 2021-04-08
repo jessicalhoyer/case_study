@@ -68,7 +68,7 @@ public class HomeController {
 			model.addAttribute("blankUsername", "Username cannot be blank");
 			return "register";
 		}
-		else if(password.equals("")) {
+		if(password.equals("")) {
 			model.addAttribute("blankPassword", "Password cannot be blank");
 			return "register";
 		}
@@ -120,6 +120,10 @@ public class HomeController {
 		
 		if (username.equals("")) {
 			model.addAttribute("usernameBlank", "Username cannot be blank");
+			return "edit-profile";
+		}
+		if (password.equals("") || c_password.equals("")) {
+			model.addAttribute("passwordBlank", "Password cannot be blank");
 			return "edit-profile";
 		}
 		if (!password.equals(c_password)) {
