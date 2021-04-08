@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,13 +45,33 @@
 
             <p><b>Username:</b> ${currentUser.username}</p>
             
-            <p>Folder list and document list?</p>
-            
-            <a href="edit-profile" class="button">Edit Profile</a>
-            <a href="delete-profile" class="button">Delete Account</a>
+            <div class="line">
+            	<a href="edit-profile" class="button">Edit Profile</a>
+	            <a href="delete-profile" class="button">Delete Account</a>
+            </div>
             
 			<p>${profileEditSuccess}</p>
-			
+            
+            <p class="folder"><b>Directory</b></p>
+            
+	            <c:if test="${empty folderList}">
+        			<p>Nothing to display.</p>
+        		</c:if>
+        		<c:if test="${!empty folderList}">
+		        	<c:forEach items="${folderList}" var="folder">
+		        	<p><b>Folder:</b> ${folder.title}</p>
+		        	<p><b>Documents:</b></p>
+		        		<c:if test="${empty folder.documents}">
+		        			<p>None</p>
+		        		</c:if>
+			        	<c:if test="${!empty folder.documents}">
+					        <c:forEach items="${folder.documents}" var="doc">
+						       <p>${doc.title}</p>
+					        </c:forEach>
+			       		</c:if>
+			    	</c:forEach>
+	       		</c:if>
+
 			</section>
             
         </div>
