@@ -19,10 +19,16 @@ public class UserService {
 	public void saveUser(User user) throws UsernameTakenException {
 		try {
 			userRepository.save(user);
+//			return user; // added this and changed return type from void to user
 		}
 		catch (Exception e) {
 			throw new UsernameTakenException("Username already taken");
 		}
+	}
+	
+	public User saveUser_testing(User user) {
+		userRepository.save(user);
+		return user;
 	}
 	
 	public User findByUsername(String username) {

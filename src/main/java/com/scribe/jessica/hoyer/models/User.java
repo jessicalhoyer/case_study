@@ -35,11 +35,11 @@ public class User {
 	private List<Folder> folders;
 	
 	public User() {
-		super();
+//		super();
 	}
 	
 	public User(String username, String password, List<Folder> folders) {
-		super();
+//		super();
 		this.username = username;
 		this.password = password;
 		this.folders = folders;
