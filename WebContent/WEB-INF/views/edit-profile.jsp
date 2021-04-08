@@ -69,6 +69,8 @@
             <p>${usernameTaken}</p>
             <p>${passwordBlank}</p>
             <p>${passwordMismatch}</p>
+            <p>${usernameLength}</p>
+            <p>${passwordLength}</p>
             <p>${profileEditSuccess}</p>
             
             </form>

@@ -142,6 +142,14 @@ public class HomeController {
 			model.addAttribute("passwordMismatch", "Passwords do not match");
 			return "edit-profile";
 		}
+		if (username.length() < 2 || username.length() > 30) {
+			model.addAttribute("usernameLength", "Username must be between 2 and 30 characters");
+			return "edit-profile";
+		}
+		if (password.length() < 4 || password.length() > 20) {
+			model.addAttribute("passwordLength", "Password must be between 4 and 20 characters");
+			return "edit-profile";
+		}
 		else {
 			us.editProfile(username, password, user.getId());
 			model.addAttribute("profileEditSuccess", "Profile updated successfully");
