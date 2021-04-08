@@ -25,26 +25,12 @@ public class UserService {
 		}
 	}
 	
-	public boolean saveUser_test(User user) {
-		if (userRepository.save(user) !=null) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	
 	public User findByUsername(String username) {
 		return userRepository.findByUsername(username);
 	}
 	
 	public void deleteUser(User user) {
 		userRepository.delete(user);
-	}
-	
-	public User deleteUser_test(User user) {
-		userRepository.delete(user);
-		return user;
 	}
 	
 	public void editProfile(String username, String password, int id) throws UsernameTakenException {

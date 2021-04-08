@@ -15,7 +15,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	public User findByUsername(String username);
 	
-	public boolean deleteById(int id); // changed to boolean
+	public void deleteById(int id);
 	
 	@Transactional
 	@Modifying
@@ -24,6 +24,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	public boolean editProfile(@Param("new_username") String username,
 			@Param("new_password") String password,
 			@Param("id") int id);
-	// also changed to boolean
+	// changed to boolean
 	
 }
