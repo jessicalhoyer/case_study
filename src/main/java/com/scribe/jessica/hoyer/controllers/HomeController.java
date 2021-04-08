@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.scribe.jessica.hoyer.exceptions.UsernameTakenException;
 import com.scribe.jessica.hoyer.models.Document;
 import com.scribe.jessica.hoyer.models.Folder;
 import com.scribe.jessica.hoyer.models.User;
@@ -43,6 +44,14 @@ public class HomeController {
 		this.fs = folderService;
 		this.ds = ds;
 	}
+	
+	
+	/*
+	 * EXCEPTION HANDLING
+	 */
+	
+	
+	
 	
 	@GetMapping("/")
 	public String showIndex() {
@@ -69,11 +78,11 @@ public class HomeController {
 			@RequestParam("username") String username,
 			@RequestParam("password") String password) {
 		if (username.equals("")) {
-			model.addAttribute("blankUsername", "Username cannot be blank");
+			model.addAttribute("usernameBlank", "Username cannot be blank");
 			return "register";
 		}
 		if(password.equals("")) {
-			model.addAttribute("blankPassword", "Password cannot be blank");
+			model.addAttribute("passwordBlank", "Password cannot be blank");
 			return "register";
 		}
 		if (username.length() < 2 || username.length() > 30) {
@@ -88,8 +97,16 @@ public class HomeController {
 			User user = new User();
 			user.setUsername(username);
 			user.setPassword(password);
-			us.saveUser(user);
-			return "redirect:/login";
+			
+			try {
+				us.saveUser(user);
+				return "redirect:/login";
+			}
+			catch (UsernameTakenException e){
+				model.addAttribute("usernameTaken", "Username is already taken");
+				return "register";
+			}
+
 		}
 	}
 	
@@ -151,9 +168,15 @@ public class HomeController {
 			return "edit-profile";
 		}
 		else {
-			us.editProfile(username, password, user.getId());
-			model.addAttribute("profileEditSuccess", "Profile updated successfully");
-			return "profile";
+			try {
+				us.editProfile(username, password, user.getId());
+				model.addAttribute("profileEditSuccess", "Profile updated successfully");
+				return "profile";
+			}
+			catch (UsernameTakenException e){
+				model.addAttribute("usernameTaken", "Username is already taken");
+				return "edit-profile";
+			}
 		}
 	}
 	

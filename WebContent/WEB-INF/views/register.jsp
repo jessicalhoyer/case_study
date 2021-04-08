@@ -59,9 +59,9 @@
                     <input type="reset" value="Reset" name="reset" id="reset"/>
                 </div>
                 
-                <p>${blankUsername}</p>
-                <p>${takenUsername}</p>
-                <p>${blankPassword}</p>
+                <p>${usernameBlank}</p>
+                <p>${usernameTaken}</p>
+                <p>${passwordBlank}</p>
                 <p>${usernameLength}</p>
                 <p>${passwordLength}</p>
                 

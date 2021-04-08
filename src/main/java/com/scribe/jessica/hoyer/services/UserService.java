@@ -3,6 +3,7 @@ package com.scribe.jessica.hoyer.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.scribe.jessica.hoyer.exceptions.UsernameTakenException;
 import com.scribe.jessica.hoyer.models.User;
 import com.scribe.jessica.hoyer.repositories.UserRepository;
 
@@ -15,8 +16,13 @@ public class UserService {
 		this.userRepository = userRepository;
 	}
 	
-	public void saveUser(User user) {
-		userRepository.save(user);
+	public void saveUser(User user) throws UsernameTakenException {
+		try {
+			userRepository.save(user);
+		}
+		catch (Exception e) {
+			throw new UsernameTakenException("Username already taken");
+		}
 	}
 	
 	public User findByUsername(String username) {
@@ -27,8 +33,13 @@ public class UserService {
 		userRepository.delete(user);
 	}
 	
-	public void editProfile(String username, String password, int id) {
-		userRepository.editProfile(username, password, id);
+	public void editProfile(String username, String password, int id) throws UsernameTakenException {
+		try {
+			userRepository.editProfile(username, password, id);
+		}
+		catch (Exception e) {
+			throw new UsernameTakenException("Username already taken");
+		}
 	}
 
 }
