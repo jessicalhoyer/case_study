@@ -38,28 +38,23 @@
 
 
         <div id="wrapper">
+        
+        <section class="content">
+        
+        <h2>Delete Profile</h2>
 
-            <form:form action="./edit-profile" method="post" modelAttribute="editProfile">
+            <form class="center" action="./delete-profile" method="post">
             
-            	<label for="username">Username</label>
-            	<form:input path="username" value="${currentUser.username}"/>
-            	<form:errors path="username"/>
-            	<br/>
-            	<label for="password">Password</label>
-            	<form:password path="password"/>
-            	<form:errors path="password"/>
-            	<br/>
-            	<label for="c-password">Confirm Password</label>
-            	<form:password path="c-password"/>
-            	<form:errors path="c-password"/>
+            	<p>Are you sure you want to delete your account?</p>
+	
+				<input type="hidden" name="id" value="${currentUser.id}"/>
             	
-            	<input type="submit" value="Submit" name="submit"/>
+            	<input type="submit" value="Delete" name="submit"/>
+            	<a href="profile" class="button">Cancel</a>
             
-            </form:form>
+            </form>
             
-            <a href="profile">Back to Profile</a>
-            
-			<p>${profileEditSuccess}</p>
+        </section>
             
         </div>
 

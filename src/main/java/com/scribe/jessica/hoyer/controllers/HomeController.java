@@ -146,7 +146,7 @@ public class HomeController {
 	public String deleteUser(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("currentUser");
 		us.deleteUser(user);
-		return "index";
+		return "redirect:/index";
 	}
 	
 	@GetMapping("/directory")
