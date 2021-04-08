@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-        <title>Scribe | ${currentUser.username}'s Directory</title>
+        <title>Scribe | Delete ${currentFolder.title}</title>
 
         <!-- stylesheet -->
         <spring:url value="/resources/css/main.css" var="mainCss"/>
@@ -53,13 +53,14 @@
         
         <h2>${currentFolder.title}</h2>
         
-        <form action="${pageContext.request.contextPath}/delete-folder" method="post">
-        
-        <p>Are you sure you want to delete ${currentFolder.title}? All documents currently in this folder will be deleted as well!</p>
-
-		<input type="hidden" name="folder_id" value="${currentFolder.id}"/>
-		
-        <input type="submit" value="Delete" name="submit" id="submit"/>
+	    <form action="${pageContext.request.contextPath}/delete-folder" method="post">
+	        
+	        <p>Are you sure you want to delete ${currentFolder.title}? All the documents that are currently in this folder will be deleted as well!</p>
+	
+			<input type="hidden" name="folder_id" value="${currentFolder.id}"/>
+			
+	        <input type="submit" value="Delete" name="submit" id="submit"/>
+	        <a href="${pageContext.request.contextPath}/edit-folder/${currentFolder.id}" class="button">Cancel</a>
         
         </form>
 

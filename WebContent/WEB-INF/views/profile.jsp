@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-        <title>Scribe | Login</title>
+        <title>Scribe | ${currentUser.username}'s Profile</title>
 
         <!-- stylesheet -->
         <spring:url value="/resources/css/main.css" var="mainCss"/>
@@ -40,10 +40,10 @@
 
             <p><b>Username:</b> ${currentUser.username}</p>
             
-            <p>Maybe other profile information here as well. To be decided based on time constraints!</p>
+            <p>Folder list and document list?</p>
             
-            <a href="edit-profile/${currentUser.id}">Edit Profile</a>
-            <a href="delete-profile/${currentUser.id}">Delete Account</a>
+            <a href="edit-profile">Edit Profile</a>
+            <a href="delete-profile">Delete Account</a>
             
 			<p>${profileEditSuccess}</p>
             

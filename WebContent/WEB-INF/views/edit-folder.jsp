@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-        <title>Scribe | ${currentUser.username}'s Directory</title>
+        <title>Scribe | Edit ${currentFolder.title}</title>
 
         <!-- stylesheet -->
         <spring:url value="/resources/css/main.css" var="mainCss"/>
@@ -51,7 +51,7 @@
         
         <section class="organizer">
 	        <c:forEach items="${folderList}" var="folder">
-	        <p class="folder"><a href="${pageContext.request.contextPath}/edit-folder/${folder.id}">${folder.title}</a></p>
+	        <p class="folder edit"><a href="${pageContext.request.contextPath}/edit-folder/${folder.id}">${folder.title}</a></p>
 	        	
 	        	<c:forEach items="${folder.documents}" var="doc">
 		        <p class="doc"><a href="${pageContext.request.contextPath}/edit-doc/${doc.id}">${doc.title}</a></p>
@@ -62,22 +62,24 @@
         
         <section class="body">
         
-        <h2>${currentFolder.title}</h2>
+        <h2>Edit ${currentFolder.title}</h2>
         
-        <form action="${pageContext.request.contextPath}/edit-folder" method="post">
-        
-        
-        <label for="title">Title</label>
-        <input type="text" name="title" value="${currentFolder.title}" style="border:1px solid black;"/>
-        <br/>
-        <input type="hidden" name="id" value="${currentFolder.id}"/>
-        <input type="submit" value="Save" name="submit" id="submit"/>
-        
-        <a href="${pageContext.request.contextPath}/delete-folder/${currentFolder.id}">Delete</a>
-        
-        </form>
-        
-        <p>${titleBlank}</p>
+	        <form class="center" action="${pageContext.request.contextPath}/edit-folder" method="post">
+	
+				<div class="line">
+			        <label for="title">Title</label>
+			        <input type="text" name="title" value="${currentFolder.title}"/>
+		        </div>
+		        
+		        <div class="line">
+			        <input type="hidden" name="id" value="${currentFolder.id}"/>
+			        <input type="submit" value="Save" name="submit" id="submit"/>
+			        <a href="${pageContext.request.contextPath}/delete-folder/${currentFolder.id}" class="button">Delete</a>
+		        </div>
+		        
+		        <p>${titleBlank}</p>
+	        
+	        </form>
 
         </section>
         

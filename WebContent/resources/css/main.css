@@ -1,12 +1,5 @@
 @charset "utf-8";
 
-/* resets
-* {
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-} */
-
 /* main styles */
 body {
     font-size:0.9em;
@@ -43,6 +36,12 @@ a:hover {
     padding:1em;
 }
 
+.content {
+	background-color:#20122A;
+	padding:1em;
+	border:5px solid #160821;
+}
+
 .flex-container {
 	display:flex;
 	flex-direction:row;
@@ -66,6 +65,11 @@ a:hover {
 @media (max-width:970px) {
 	.flex-container {
 		flex-direction:column;
+	}
+	
+	.organizer {
+		max-height:500px;
+		overflow:auto;
 	}
 }
 
@@ -109,15 +113,40 @@ li a.selected {
 /* form elements */
 
 input, select, textarea {
-    background-color:#20122A;
+    background-color:#2B1E35;
     padding:0.3em;
     border:none;
     color:#958F9A;
+    border:1px solid #160821
+}
+
+input {
+	cursor:pointer;
+}
+
+textarea {
+	width:100%;
 }
 
 .line {
     display:block;
     margin:0.5em;
+}
+
+label {
+	font-weight:bold;
+}
+
+.button {
+	background-color:#2B1E35;
+    padding:0.3em;
+    border:none;
+    color:#958F9A;
+    border:1px solid #160821
+}
+
+.button a:hover {
+	color:#958F9A;
 }
 
 /* text styles */
@@ -156,8 +185,17 @@ p.lead {
 
 p.folder {
 	font-weight:bold;
+	background-color:#2B1E35;
+	padding:0.2em;
+	text-align:center;
+	
+	transition:all 0.6s ease;
+}
+
+p.edit:hover {
+	background-color:#403549;
 }
 
 p.doc {
-	
+	padding-left:0.5em;
 }

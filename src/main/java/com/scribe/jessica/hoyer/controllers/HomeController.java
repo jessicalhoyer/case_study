@@ -56,18 +56,26 @@ public class HomeController {
 	}
 	
 	@GetMapping("/register")
-	public String showRegister(Model model) {
-		model.addAttribute("user", new User());
+	public String showRegister() {
 		return "register";
 	}
 	
 	@PostMapping("/register")
-	public String processRegister(@Valid @ModelAttribute("user") User user,
-			BindingResult result) {
-		if (result.hasErrors()) {
+	public String processRegister(Model model,
+			@RequestParam("username") String username,
+			@RequestParam("password") String password) {
+		if (username.equals("")) {
+			model.addAttribute("blankUsername", "Username cannot be blank");
+			return "register";
+		}
+		else if(password.equals("")) {
+			model.addAttribute("blankPassword", "Password cannot be blank");
 			return "register";
 		}
 		else {
+			User user = new User();
+			user.setUsername(username);
+			user.setPassword(password);
 			us.saveUser(user);
 			return "redirect:/login";
 		}
@@ -93,24 +101,36 @@ public class HomeController {
 	@GetMapping("/profile")
 	public String showProfile(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("currentUser");
+		List<Folder> folderList = fs.listAllFolders(user.getId());				
+		model.addAttribute("folderList", folderList);
 		return "profile";
 	}
 	
-	@GetMapping("/edit-profile/{id}")
-	public String editProfile(@PathVariable("id") int id, Model model) {
-		
-		// not finished
-		
-		return "profile";
+	@GetMapping("/edit-profile")
+	public String editProfile() {
+		return "edit-profile";
 	}
 	
 	@PostMapping("edit-profile")
-	public String processEditProfile(Model model) {
+	public String processEditProfile(Model model, HttpSession session,
+			@RequestParam("username") String username,
+			@RequestParam("password") String password,
+			@RequestParam("c-password") String c_password) {
+		User user = (User) session.getAttribute("currentUser");
 		
-		// not finished
-		
-		model.addAttribute("profileEditSuccess", "Profile updated successfully");
-		return "profile";
+		if (username.equals("")) {
+			model.addAttribute("usernameBlank", "Username cannot be blank");
+			return "edit-profile";
+		}
+		if (!password.equals(c_password)) {
+			model.addAttribute("passwordMismatch", "Passwords do not match");
+			return "edit-profile";
+		}
+		else {
+			us.editProfile(username, password, user.getId());
+			model.addAttribute("profileEditSuccess", "Profile updated successfully");
+			return "profile";
+		}
 	}
 	
 	@GetMapping("/delete-profile")
@@ -126,20 +146,11 @@ public class HomeController {
 	}
 	
 	@GetMapping("/directory")
-	public String showDirectory(Model model, HttpSession session){
-		// if folderList is empty display message
-		
+	public String showDirectory(Model model, HttpSession session){		
 		User user = (User) session.getAttribute("currentUser");
-		List<Folder> folderList = fs.listAllFolders(user.getId());
-				
-		if (folderList != null) {
-			model.addAttribute("folderList", folderList);
-			return "directory";
-		}
-		else {
-			model.addAttribute("folderList", "Nothing to display.");
-			return "directory";
-		}
+		List<Folder> folderList = fs.listAllFolders(user.getId());				
+		model.addAttribute("folderList", folderList);
+		return "directory";
 	}
 	
 	@GetMapping("/directory{message}")

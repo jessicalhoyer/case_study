@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-        <title>Scribe | ${currentUser.username}'s Directory</title>
+        <title>Scribe | Create Folder</title>
 
         <!-- stylesheet -->
         <spring:url value="/resources/css/main.css" var="mainCss"/>
@@ -52,17 +52,20 @@
         
         <h2>Create New Folder</h2>
         
-        <form:form action="./create-folder" method="post" modelAttribute="newFolder">
-        
-        <label for="title">Title</label>
-        
-        <form:input path="title" style="border:1px solid black;"/>
-        <br/>
-        
-        <input type="submit" value="Create" name="submit" id="submit"/>
-        <p><form:errors path="title"/></p>
-        
-        </form:form>
+	        <form:form action="./create-folder" method="post" modelAttribute="newFolder">
+	        
+	        <div class="line">
+		        <label for="title">Title</label>
+		        <form:input path="title" style="border:1px solid black;"/>
+	        </div>
+	        
+	        <div class="line">
+	        	<input type="submit" value="Create" name="submit" id="submit"/>
+	        </div>
+	        
+	        <p><form:errors path="title"/></p>
+	        
+	        </form:form>
 
         </section>
         

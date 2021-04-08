@@ -26,5 +26,9 @@ public class UserService {
 	public void deleteUser(User user) {
 		userRepository.delete(user);
 	}
+	
+	public void editProfile(String username, String password, int id) {
+		userRepository.editProfile(username, password, id);
+	}
 
 }

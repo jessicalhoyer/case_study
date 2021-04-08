@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-        <title>Scribe | Login</title>
+        <title>Scribe | Edit Profile</title>
 
         <!-- stylesheet -->
         <spring:url value="/resources/css/main.css" var="mainCss"/>
@@ -39,23 +39,24 @@
 
         <div id="wrapper">
 
-            <form:form action="./edit-profile" method="post" modelAttribute="editProfile">
+            <form action="./edit-profile" method="post">
             
             	<label for="username">Username</label>
-            	<form:input path="username" value="${currentUser.username}"/>
-            	<form:errors path="username"/>
+            	<input type="text" name="username" value="${currentUser.username}"/>
             	<br/>
             	<label for="password">Password</label>
-            	<form:password path="password"/>
-            	<form:errors path="password"/>
+            	<input type="password" name="password"/>
             	<br/>
             	<label for="c-password">Confirm Password</label>
-            	<form:password path="c-password"/>
-            	<form:errors path="c-password"/>
+            	<input type="password" name="c-password"/>
             	
             	<input type="submit" value="Submit" name="submit"/>
+            	
+            <p>${usernameBlank}</p>
+            <p>${usernameTaken}</p>
+            <p>${passwordMismatch}</p>
             
-            </form:form>
+            </form>
             
             <a href="profile">Back to Profile</a>
             

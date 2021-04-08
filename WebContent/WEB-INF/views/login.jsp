@@ -36,27 +36,33 @@
 
 
         <div id="wrapper">
+        
+        <section class="content">
+        
+        <h2>Login</h2>
 
             <form class="center" action="./login" method="post">
-            <h2>Login</h2>
             
                 <div class="line">
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username"/>
+	                <label for="username">Username</label>
+	                <input type="text" name="username" id="username"/>
                 </div>
 
                 <div class="line">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password"/>
+	                <label for="password">Password</label>
+	                <input type="password" name="password" id="password"/>
                 </div>
 
                 <div class="line">
-                <input type="submit" value="Login" name="submit" id="submit"/>
-                <input type="reset" value="Reset" name="reset" id="reset"/>
+	                <input type="submit" value="Login" name="submit" id="submit"/>
+	                <input type="reset" value="Reset" name="reset" id="reset"/>
                 </div>
                 
                 <p>${loginFailed}</p>
+                
             </form>
+            
+            </section>
             
         </div>
 

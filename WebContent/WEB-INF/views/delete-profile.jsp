@@ -28,9 +28,9 @@
 				<ul>
 					<li><p class="title">Scribe</p></li>
 					<li>Welcome ${currentUser.username}</li>
-					<li><a href="profile">Profile</a></li>
-					<li><a href="directory">Directory</a></li>
-					<li><a href="logout">Logout</a></li>
+					<li><a href="${pageContext.request.contextPath}/profile">Profile</a></li>
+					<li><a href="${pageContext.request.contextPath}/directory">Directory</a></li>
+					<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
 				</ul>
 			</nav>
 	            

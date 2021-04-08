@@ -38,29 +38,35 @@
 
         <div id="wrapper">
 
-            <form:form class="center" action="./register" method="post" modelAttribute="user">
+        <section class="content">
+        
+        <h2>Register</h2>
 
-                <h2>Register</h2>
-                
+            <form class="center" action="./register" method="post">
+
                 <div class="line">
                     <label for="username">Username</label>
-                    <form:input path="username"/>
-                    <br/>
-                    <form:errors path="username"/>
+					<input type="text" name="username"/>
                 </div>
 
                 <div class="line">
                     <label for="password">Password</label>
-                    <form:password path="password"/>
-                    <br/>
-                    <form:errors path="password"/>
+                    <input type="password" name="password"/>
                 </div>
 
                 <div class="line">
                     <input type="submit" value="Register" name="submit" id="submit"/>
                     <input type="reset" value="Reset" name="reset" id="reset"/>
                 </div>
-            </form:form>
+                
+                <p>${blankUsername}</p>
+                <p>${takenUsername}</p>
+                <p>${blankPassword}</p>
+                
+            </form>
+            
+            </section>
+            
         </div>
             
         <footer>

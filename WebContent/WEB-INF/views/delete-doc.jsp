@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-        <title>Scribe | ${currentUser.username}'s Directory</title>
+        <title>Scribe | Delete ${currentDoc.title}</title>
 
         <!-- stylesheet -->
         <spring:url value="/resources/css/main.css" var="mainCss"/>
@@ -56,11 +56,12 @@
         
         <form action="${pageContext.request.contextPath}/delete-doc" method="post">
         
-        <p>Are you sure you want to delete ${currentDoc.title}?</p>
-
-		<input type="hidden" name="doc_id" value="${currentDoc.id}"/>
-		
-        <input type="submit" value="Delete" name="submit" id="submit"/>
+	        <p>Are you sure you want to delete ${currentDoc.title}?</p>
+	
+			<input type="hidden" name="doc_id" value="${currentDoc.id}"/>
+			
+	        <input type="submit" value="Delete" name="submit" id="submit"/>
+	        <a href="${pageContext.request.contextPath}/edit-doc/${currentDoc.id}" class="button">Cancel</a>
         
         </form>
 

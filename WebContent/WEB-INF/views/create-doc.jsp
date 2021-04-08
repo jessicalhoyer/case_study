@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-        <title>Scribe | ${currentUser.username}'s Directory</title>
+        <title>Scribe | Create Document</title>
 
         <!-- stylesheet -->
         <spring:url value="/resources/css/main.css" var="mainCss"/>
@@ -52,34 +52,41 @@
         
         <h2>Create New Document</h2>
         
-        <form action="./create-doc" method="post">
-        
-        <c:if test="${empty folderList}">
-        	<p>Please create a folder before creating a document</p>
-        </c:if>
-        
-        <c:if test="${!empty folderList}">
-	        <label for="title">Title</label>
-	        <input type="text" name="title" style="border:1px solid black;"/>
-	        <br/>
+	        <form class="center" action="./create-doc" method="post">
 	        
-	        <label for="folder">Folder</label>
-	        <select name="folder">
-	        	<c:forEach items="${folderList}" var="fol">     		
-	        		<option value="${fol.id}">${fol.title}</option>
-	        	</c:forEach>
-	        </select>
+		        <c:if test="${empty folderList}">
+		        	<p>Please create a folder before creating a document</p>
+		        </c:if>
 	        
-	        <br/>
-	        <textarea name="content" rows="10" cols="70" style="border:1px solid black;"></textarea>
-	        <br/>
-	        <input type="submit" value="Create" name="submit" id="submit"/>
-	        
-	        <p>${titleBlank}</p>
-	        
-	   </c:if>
-	        
-	        </form>
+		        <c:if test="${!empty folderList}">
+		        	<div class="line">
+				        <label for="title">Title</label>
+				        <input type="text" name="title"/>
+			        </div>
+			        
+			        <div class="line">
+				        <label for="folder">Folder</label>
+				        <select name="folder">
+				        	<c:forEach items="${folderList}" var="fol">     		
+				        		<option value="${fol.id}">${fol.title}</option>
+				        	</c:forEach>
+				        </select>
+			        </div>
+			        
+			        <div class="line">
+			        	<textarea name="content" rows="10" cols="70"></textarea>
+			        </div>
+			        
+			        <div class="line">
+			        	<input type="submit" value="Create" name="submit" id="submit"/>
+			        	<input type="reset" value="Reset" name="reset" id="reset"/>
+			        </div>
+			        
+			        <p>${titleBlank}</p>
+			        
+			   	</c:if>
+		        
+			</form>
 	        
         </section>
         
