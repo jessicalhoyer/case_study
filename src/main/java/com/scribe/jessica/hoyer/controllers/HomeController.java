@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -45,23 +46,25 @@ public class HomeController {
 		this.ds = ds;
 	}
 	
+	// catches users without accounts trying to access pages that require login credentials
+	@ExceptionHandler({NullPointerException.class})
+	public String nullUserError() {
+		return "access-denied";
+	}
 	
-	/*
-	 * EXCEPTION HANDLING
-	 */
-	
-	
-	
-	
+	// show index page
 	@GetMapping("/")
 	public String showIndex() {
 		return "index";
 	}
 	
+	// show index page with specified index mapping
 	@GetMapping("/index")
 	public String showIndex2() {
 		return "index";
 	}
+	
+	/* ===== REGISTER METHODS ==== */
 	
 	// show register page
 	@GetMapping("/register")
@@ -69,10 +72,9 @@ public class HomeController {
 		return "register";
 	}
 	
-	/* REGISTER USER
-	 * validation checks: blank username, blank password, username already taken,
-	 * username between 2 and 30 characters, password between 4 and 20 characters
-	 */
+	// process register - save new user
+	// validation checks: blank username, blank password, username already taken,
+	// username between 2 and 30 characters, password between 4 and 20 characters
 	@PostMapping("/register")
 	public String processRegister(Model model,
 			@RequestParam("username") String username,
@@ -110,11 +112,16 @@ public class HomeController {
 		}
 	}
 	
+	/* ===== LOGIN METHODS ==== */
+	
+	// show login page
 	@GetMapping("/login")
 	public String showLogin() {
 		return "login";
 	}
 	
+	// process login - login user
+	// validation checks: correct username and password
 	@PostMapping("/login")
 	public String processLogin(@RequestParam("username") String username,
 			@RequestParam("password") String password, Model model, HttpSession session) {
@@ -127,6 +134,9 @@ public class HomeController {
 		return "login";
 	}
 	
+	/* ===== PROFILE METHODS ==== */
+	
+	// show profile page
 	@GetMapping("/profile")
 	public String showProfile(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("currentUser");
@@ -135,11 +145,16 @@ public class HomeController {
 		return "profile";
 	}
 	
+	// show edit-profile page
 	@GetMapping("/edit-profile")
 	public String editProfile() {
 		return "edit-profile";
 	}
 	
+	// process edit-profile - edit current user's username and password
+	// validation checks: blank username, blank password, password mismatch,
+	// username between 2 and 30 characters, password between 4 and 20 characters,
+	// username already taken
 	@PostMapping("edit-profile")
 	public String processEditProfile(Model model, HttpSession session,
 			@RequestParam("username") String username,
@@ -180,11 +195,16 @@ public class HomeController {
 		}
 	}
 	
+	/* ===== DELETE-PROFILE METHODS ==== */
+	
+	// show delete-profile page
+	// directs to confirmation page
 	@GetMapping("/delete-profile")
 	public String confirmUserDelete() {
 		return "delete-profile";
 	}
 	
+	// process delete user - deletes current user
 	@PostMapping("/delete-profile")
 	public String deleteUser(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("currentUser");
@@ -192,6 +212,9 @@ public class HomeController {
 		return "redirect:/index";
 	}
 	
+	/* ===== DIRECTORY METHODS ==== */
+	
+	// show directory page
 	@GetMapping("/directory")
 	public String showDirectory(Model model, HttpSession session){		
 		User user = (User) session.getAttribute("currentUser");
@@ -200,6 +223,8 @@ public class HomeController {
 		return "directory";
 	}
 	
+	// show directory page that displays messages for the changes the user has made
+	// currently does not work
 	@GetMapping("/directory{message}")
 	public String showDirectoryMessage(@PathVariable("message") String message,
 			HttpSession session, Model model) {
@@ -232,6 +257,11 @@ public class HomeController {
 		
 	}
 	
+	/* ===== DOC METHODS ==== */
+	
+	// show doc page aka view mode
+	// folders not included because they only contain a title which is already displayed
+	// in the organizer
 	@GetMapping("/doc/{id}")
 	public String showDocument(@PathVariable("id") int id, Model model,
 			HttpSession session) {
@@ -245,6 +275,9 @@ public class HomeController {
 		return "doc";
 	}
 	
+	/* ===== EDIT METHODS ==== */
+	
+	// show edit-doc page aka edit mode
 	@GetMapping("/edit-doc/{id}")
 	public String editDocument(@PathVariable("id") int id, Model model,
 			HttpSession session) {
@@ -258,6 +291,8 @@ public class HomeController {
 		return "edit-doc";
 	}
 
+	// process edit-doc - edit document title, content, folder
+	// validation checks: blank title
 	@PostMapping("/edit-doc")
 	public String processDocument(
 			@RequestParam("title") String title,
@@ -285,7 +320,7 @@ public class HomeController {
 		}
 	}
 	
-	
+	// show edit-folder page
 	@GetMapping("/edit-folder/{id}")
 	public String editFolder(@PathVariable("id") int id, Model model,
 			HttpSession session) {
@@ -299,6 +334,8 @@ public class HomeController {
 		return "edit-folder";
 	}
 	
+	// process edit-folder - edit folder title
+	// validation checks: blank title
 	@PostMapping("/edit-folder")
 	public String processFolder(Model model, HttpSession session,
 			@RequestParam("title") String title,
@@ -324,6 +361,10 @@ public class HomeController {
 		
 	}
 	
+	/* ===== DELETE METHODS ==== */
+	
+	// show delete-doc page
+	// directs to confirmation page
 	@GetMapping("/delete-doc/{id}")
 	public String confirmDocDelete(@PathVariable("id") int id, Model model,
 			HttpSession session) {
@@ -333,6 +374,7 @@ public class HomeController {
 		return "delete-doc";
 	}
 	
+	// process delete doc - deletes current document
 	@PostMapping("/delete-doc")
 	public String deleteDoc(@RequestParam("doc_id") int id,
 			Model model, HttpSession session) {
@@ -345,6 +387,8 @@ public class HomeController {
 		return "redirect:/directory";
 	}
 	
+	// show delete-folder page
+	// directs to confirmation page
 	@GetMapping("/delete-folder/{id}")
 	public String confirmFolderDelete(@PathVariable("id") int id, Model model,
 			HttpSession session) {
@@ -354,6 +398,7 @@ public class HomeController {
 		return "delete-folder";
 	}
 	
+	// process delete folder - deletes current folder
 	@PostMapping("/delete-folder")
 	public String deleteFolder(@RequestParam("folder_id") int id,
 			Model model, HttpSession session) {
@@ -366,12 +411,17 @@ public class HomeController {
 		return "redirect:/directory";
 	}
 	
+	/* ===== CREATE METHODS ==== */
+	
+	// show create-folder page
 	@GetMapping("/create-folder")
 	public String showCreateFolder(Model model) {
 		model.addAttribute("newFolder", new Folder());
 		return "create-folder";
 	}
 	
+	// process create folder - creates new folder under user
+	// validation check: blank title
 	@PostMapping("/create-folder")
 	public String processCreateFolder(@Valid @ModelAttribute("newFolder") Folder folder,
 			BindingResult result, Model model, HttpSession session) {
@@ -392,6 +442,7 @@ public class HomeController {
 		}
 	}
 	
+	// show create-doc page
 	@GetMapping("/create-doc")
 	public String showCreateDoc(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("currentUser");
@@ -402,6 +453,9 @@ public class HomeController {
 		return "create-doc";
 	}
 	
+	// process create doc - creates new document under folder (and thereby under user)
+	// validation check: blank title, must create folder before creating document (*this
+	// check is done in the jsp)
 	@PostMapping("/create-doc")
 	public String processCreateDoc(Model model, HttpSession session,
 			@RequestParam("title") String title,
@@ -420,10 +474,6 @@ public class HomeController {
 			model.addAttribute("titleBlank", "Title cannot be blank");
 			return "create-doc";
 		}
-		else if (folderId.equals("")) {
-			model.addAttribute("folderBlank", "Please create a folder before creating a document.");
-			return "create-doc";
-		}
 		else {
 			ds.saveDocument(doc);
 			model.addAttribute("docCreate", "true");
@@ -432,12 +482,10 @@ public class HomeController {
 		
 	}
 	
+	/* ===== LOGOUT METHODS ==== */
 	
-	@GetMapping("/success")
-	public String showSuccess() {
-		return "success";
-	}
-	
+	// display logout page
+	// logs out current user and sets session to null
 	@GetMapping("/logout")
 	public String showLogout(HttpSession session, Model model) {
 		session.setAttribute("currentUser", null);
