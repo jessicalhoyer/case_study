@@ -39,9 +39,9 @@
             
             <section class="content">
 
-            <h2>Access denied</h2>
+            <h2>Invalid Request</h2>
             
-            <p>You must be logged in to view this page.</p>
+            <p>The page you are trying to access does not exist.</p>
             
         </section>
             
