@@ -41,6 +41,12 @@
         <section class="content">
         
         <h2>Register</h2>
+        
+        <p>Register for an account with Scribe here!</p>
+        
+        <p>Please pick a username longer than 2 characters and no more than 30 characters, and a password longer than 4 characters and no more than 20 characters.</p>
+        
+        <p>All usernames are unique for each account, so if the one you pick is taken, please choose another one.</p>
 
             <form class="center" action="./register" method="post">
 
@@ -53,6 +59,11 @@
                     <label for="password">Password</label>
                     <input type="password" name="password"/>
                 </div>
+                
+                <div class="line">
+                    <label for="c-password">Confirm Password</label>
+                    <input type="password" name="c-password"/>
+                </div>
 
                 <div class="line">
                     <input type="submit" value="Register" name="submit" id="submit"/>
@@ -62,6 +73,7 @@
                 <p>${usernameBlank}</p>
                 <p>${usernameTaken}</p>
                 <p>${passwordBlank}</p>
+                <p>${passwordMismatch}</p>
                 <p>${usernameLength}</p>
                 <p>${passwordLength}</p>
                 

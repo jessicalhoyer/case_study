@@ -42,6 +42,8 @@
         <section class="content">
         
         <h2>Edit Profile</h2>
+        
+        <p>Change your username and password here. If you don't want to change your password, just enter and confirm your current password.</p>
 
             <form class="center" action="./edit-profile" method="post">
             

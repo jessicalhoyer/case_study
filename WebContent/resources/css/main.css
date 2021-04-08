@@ -120,7 +120,7 @@ input, select, textarea {
     border:1px solid #160821
 }
 
-input {
+input[type="submit"] {
 	cursor:pointer;
 }
 

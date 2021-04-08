@@ -78,13 +78,18 @@ public class HomeController {
 	@PostMapping("/register")
 	public String processRegister(Model model,
 			@RequestParam("username") String username,
-			@RequestParam("password") String password) {
+			@RequestParam("password") String password,
+			@RequestParam("c-password") String c_password) {
 		if (username.equals("")) {
 			model.addAttribute("usernameBlank", "Username cannot be blank");
 			return "register";
 		}
-		if(password.equals("")) {
+		if (password.equals("") || c_password.equals("")) {
 			model.addAttribute("passwordBlank", "Password cannot be blank");
+			return "register";
+		}
+		if (!password.equals(c_password)) {
+			model.addAttribute("passwordMismatch", "Passwords do not match");
 			return "register";
 		}
 		if (username.length() < 2 || username.length() > 30) {
@@ -145,6 +150,8 @@ public class HomeController {
 		return "profile";
 	}
 	
+	/* ===== EDIT-PROFILE METHODS ==== */
+	
 	// show edit-profile page
 	@GetMapping("/edit-profile")
 	public String editProfile() {
@@ -185,6 +192,8 @@ public class HomeController {
 		else {
 			try {
 				us.editProfile(username, password, user.getId());
+				User user_updated = us.findByUsername(username);
+				session.setAttribute("currentUser", user_updated);
 				model.addAttribute("profileEditSuccess", "Profile updated successfully");
 				return "profile";
 			}
