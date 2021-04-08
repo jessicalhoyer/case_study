@@ -8,7 +8,6 @@ import org.mockito.Mockito;
 
 import static org.mockito.Mockito.anyString;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.anyObject;
 import static org.mockito.Mockito.anyInt;
 
 import com.scribe.jessica.hoyer.models.User;
@@ -26,20 +25,11 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void testSaveUser() {	
-
-	}
-	
-	@Test
 	public void testFindByUsername() {
 		Mockito.when(userRepository.findByUsername(anyString())).thenReturn(new User("testUser1", "testPass1", null));
 		User actual = userService.findByUsername("testUser1");
 		String expected = "testPass1";
 		assertEquals(expected, actual.getPassword());
-	}
-	
-	public void testDeleteUser() {
-		
 	}
 	
 	@Test
