@@ -33,15 +33,6 @@ public class FolderService {
 		folderRepository.editFolder(title, id);
 	}
 	
-	public boolean editFolder_test(String title, int id) {
-		if (folderRepository.editFolder(title, id)) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	
 	public void deleteFolder(int id) {
 		folderRepository.deleteById(id);
 	}

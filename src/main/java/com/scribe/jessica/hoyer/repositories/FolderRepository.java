@@ -20,9 +20,8 @@ public interface FolderRepository extends JpaRepository<Folder, Integer> {
 	@Transactional
 	@Modifying
 	@Query("UPDATE Folder f SET f.title = :new_title WHERE f.id = :id")
-	public boolean editFolder(@Param("new_title") String title,
+	public void editFolder(@Param("new_title") String title,
 			@Param("id") int id);
-	// changed to boolean
 	
 	public void deleteById(int id);
 

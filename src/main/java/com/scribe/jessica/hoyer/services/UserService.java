@@ -41,14 +41,5 @@ public class UserService {
 			throw new UsernameTakenException("Username already taken");
 		}
 	}
-	
-	public boolean editProfile_test(String username, String password, int id) {
-		if (userRepository.editProfile(username, password, id)) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
 
 }

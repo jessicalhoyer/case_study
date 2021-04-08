@@ -8,7 +8,6 @@ import org.mockito.Mockito;
 
 import static org.mockito.Mockito.anyString;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.anyInt;
 
 import com.scribe.jessica.hoyer.models.User;
 import com.scribe.jessica.hoyer.repositories.UserRepository;
@@ -30,12 +29,6 @@ public class UserServiceTest {
 		User actual = userService.findByUsername("testUser1");
 		String expected = "testPass1";
 		assertEquals(expected, actual.getPassword());
-	}
-	
-	@Test
-	public void testEditProfile() {
-		Mockito.when(userRepository.editProfile(anyString(), anyString(), anyInt())).thenReturn(true);
-		assertTrue(userService.editProfile_test("test", "test", 1));
 	}
 
 }

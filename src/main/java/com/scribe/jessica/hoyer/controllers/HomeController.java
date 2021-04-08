@@ -186,8 +186,8 @@ public class HomeController {
 				us.editProfile(username, password, user.getId());
 				User user_updated = us.findByUsername(username);
 				session.setAttribute("currentUser", user_updated);
-				model.addAttribute("profileEditSuccess", "Profile updated successfully");
-				return "profile";
+				model.addAttribute("profileEdit", "true");
+				return "redirect:/profile";
 			}
 			catch (UsernameTakenException e){
 				model.addAttribute("usernameTaken", "Username is already taken");

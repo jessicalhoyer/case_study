@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import static org.mockito.Mockito.anyInt;
-import static org.mockito.Mockito.anyString;
 
 import com.scribe.jessica.hoyer.models.Folder;
 import com.scribe.jessica.hoyer.models.User;
@@ -39,7 +38,7 @@ public class FolderServiceTest {
 		List<Folder> list = new ArrayList<>();
 		list.add(f1);
 		list.add(f2);
-		Mockito.when(folderRepository.findByUserId(1)).thenReturn(list);
+		Mockito.when(folderRepository.findByUserId(anyInt())).thenReturn(list);
 		List<Folder> actual = folderService.listAllFolders(1);
 		int expected = 2;
 		assertEquals(expected, actual.size());
@@ -55,12 +54,6 @@ public class FolderServiceTest {
 		Folder actual = folderService.findById(1);
 		int expected = 1;
 		assertEquals(expected, actual.getId());
-	}
-	
-	@Test
-	public void editFolder() {
-		Mockito.when(folderRepository.editFolder(anyString(), anyInt())).thenReturn(true);
-		assertTrue(folderService.editFolder_test("test", 1));
 	}
 
 }

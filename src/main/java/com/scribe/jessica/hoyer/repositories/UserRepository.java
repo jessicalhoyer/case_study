@@ -21,9 +21,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Modifying
 	@Query("UPDATE User u SET u.username = :new_username, u.password = :new_password"
 			+"  WHERE u.id = :id")
-	public boolean editProfile(@Param("new_username") String username,
+	public void editProfile(@Param("new_username") String username,
 			@Param("new_password") String password,
 			@Param("id") int id);
-	// changed to boolean
 	
 }
