@@ -18,40 +18,47 @@
         <link href="https://fonts.googleapis.com/css2?family=Quattrocento Sans&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Shadows Into Light&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Quattrocento&display=swap" rel="stylesheet">
-        
-
-    </head>
-    <body>
-        <header>
-            <!-- logo here potentially -->
-            <nav>
-				<ul>
-					<li><p class="title">Scribe</p></li>
-					<li><a href="${pageContext.request.contextPath}/index.html">Home</a></li>
-					<li><a href="${pageContext.request.contextPath}/login.html">Login</a></li>
-					<li><a href="${pageContext.request.contextPath}/register.html">Register</a></li>
-				</ul>
-			</nav>
-        </header>
-
-
-        <div id="wrapper">
-            
-            <section class="content">
-
-            <h2>Access denied</h2>
-            
-            <p>You must be logged in to view this page.</p>
-            
-        </section>
-            
-        </div>
-
-        <footer>
-            <p class="center">Scribe &copy; Jessica Hoyer 2021</p>
-        </footer>
 </head>
+    
 <body>
 
+	<!-- start header  -->
+
+	<header>
+		 <nav>
+			<ul>
+				<li><p class="title">Scribe</p></li>
+				<li><a href="${pageContext.request.contextPath}/index.html">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}/login.html">Login</a></li>
+				<li><a href="${pageContext.request.contextPath}/register.html">Register</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<!-- end header -->
+	
+	<!-- start wrapper -->
+
+	<div id="wrapper">
+            
+		<section class="content">
+
+		<h2>Access denied</h2>
+            
+		<p>You must be logged in to view this page.</p>
+            
+		</section>
+            
+	</div>
+
+	<!-- end wrapper -->
+	
+	<!-- start footer -->
+
+	<footer>
+		<p class="center">Scribe &copy; Jessica Hoyer 2021</p>
+	</footer>
+
+	<!-- end footer -->
 </body>
 </html>
