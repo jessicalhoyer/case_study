@@ -212,6 +212,7 @@ public class HomeController {
 	public String deleteUser(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("currentUser");
 		us.deleteUser(user);
+		session.setAttribute("currentUser", null);
 		return "redirect:/index";
 	}
 	
