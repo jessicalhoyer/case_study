@@ -51,7 +51,7 @@
 		
 		<p>Scribe is an online writing application that will store all of your writing documents on one account and allow you to store each document into separate folders. Its versatility means you can organize all types of writing - from novels to class notes.</p>
 		
-		<p>Create documents and folders and use edit mode to edit them and to move documents into different folders. The HTML text editor allows you to style your content however you would like using bold, italics, and code blocks.</p>
+		<p>Create documents and folders and use edit mode to edit them and to move documents into different folders. The HTML text editor allows you to style your content however you would like including using bold, italics, and code blocks.</p>
             
 		</section>
 		
