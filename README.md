@@ -32,7 +32,7 @@ Scribe is a web application that will allow users to register an account that wi
 
 ## Technologies and Skills
 
-Scribe is a dynamic web Java Spring MVC application that utilizes Maven dependencies. It has full CRUD functionality using JpaRepositories and custom SQL queries. It uses Service classes to access the different repository interfaces. Models are used to connect with the database. The database is built with MariaDB using the HeidiSQL GUI interface. Testing is done using JUnit and Mockito.
+Scribe is a dynamic web Java Spring MVC application that utilizes Maven dependencies. It has full CRUD functionality using JpaRepositories and custom SQL queries. It uses Service classes to access the different repository interfaces. Models are used to connect with the database. The database is built with MariaDB using the HeidiSQL GUI interface and run with Tomcat server on localhost:8080. Testing is done using JUnit and Mockito.
 
 * HTML
 * CSS
