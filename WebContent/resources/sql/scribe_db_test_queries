@@ -1,0 +1,126 @@
+# =========== DATABASE QUERIES ===========
+
+CREATE DATABASE scribe_db_test;
+
+DROP DATABASE scribe_db_test;
+
+# =========== USE STATEMENT ===========
+
+USE scribe_db_test;
+
+# =========== TABLE CREATION ===========
+
+CREATE TABLE user
+	(id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	username VARCHAR(50) NOT NULL UNIQUE,
+	password VARCHAR(50) NOT NULL);
+	
+CREATE TABLE folder
+	(id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	title VARCHAR(150) NOT NULL,
+	user_id INT NOT NULL,
+	CONSTRAINT f_user_ref FOREIGN KEY(user_id) REFERENCES user(id)
+		ON DELETE CASCADE);
+	
+CREATE TABLE document
+	(id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	title VARCHAR(150) NOT NULL,
+	content TEXT NOT NULL,
+	folder_id INT NOT NULL,
+	CONSTRAINT d_folder_ref FOREIGN KEY(folder_id) REFERENCES folder(id)
+		ON DELETE CASCADE);
+	
+# =========== INSERT STATEMENTS ===========
+
+INSERT INTO `table_name`
+VALUES `values here`;
+
+# create user
+# user insert statement
+
+INSERT INTO user (username, password) VALUES
+('testing1', 'test'),
+('testing2', 'test'),
+('testing3', 'test');
+
+SELECT *
+FROM user;
+
+
+# create folder
+# folder insert statement
+
+INSERT INTO folder (title, user_id) VALUES
+('default', 1),
+('WIPs', 1),
+('Completed', 1),
+('default', 2);
+
+SELECT *
+FROM folder;
+
+
+# create document
+# document insert statement
+
+INSERT INTO document (title, content, folder_id) VALUES
+('no mourners', 'content here', 1),
+('no funerals', 'content here', 1),
+('facts are for the unimaginative', 'content here', 2),
+('no ghosts', 'content here', 2),
+('rule of wolves', 'content here', 1),
+('king of scars', 'content here', 1),
+('shadow and bone', 'content here', 1),
+('seige and storm', 'content here', 1),
+('ruin and rising', 'content here', 1);
+
+SELECT *
+FROM document;
+
+
+# to get documents in folders
+
+SELECT d.title AS 'Document',
+	u.username AS 'Written By', f.title AS 'In Folder'
+FROM user u JOIN u_directory ud ON u.id = ud.user_id
+	JOIN document d ON ud.doc_id = d.id
+	JOIN folder f ON ud.folder_id = f.id;
+	
+SELECT f.title AS 'Folder', d.title AS 'Document'
+FROM user u JOIN u_directory ud ON u.id = ud.user_id
+	JOIN document d ON ud.doc_id = d.id
+	JOIN folder f ON ud.folder_id = f.id
+WHERE u.id = 1;
+
+SELECT u.username, f.title
+FROM user u JOIN folder f ON u.id = f.user_id;
+
+SELECT *
+FROM folder
+	LEFT OUTER JOIN user ON folder.user_id = user.id
+WHERE user.id = 1;
+
+SELECT *
+FROM folder
+	JOIN user ON folder.user_id = user.id
+WHERE user.id = 1;
+
+# create folder
+# document insert statement
+
+
+# =========== MODIFY STATEMENTS ===========
+
+ALTER TABLE folder RENAME COLUMN userId TO user_id;
+
+UPDATE document SET title = 'testing', content = 'testing',
+	folder_id = 9 WHERE id = 10;
+
+
+# =========== DELETE STATEMENTS ===========
+
+DELETE FROM user
+WHERE id = 3;
+
+# delete user profile
+
