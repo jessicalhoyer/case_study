@@ -24,24 +24,33 @@ public class DocumentServiceTest {
 	private static DocumentService documentService;
 	private static DocumentRepository documentRepository;
 	
+	// set up a mock instance of DocumentRepository and DocumentService
 	@BeforeClass
 	public static void setUp() {
 		documentRepository = Mockito.mock(DocumentRepository.class);
 		documentService = new DocumentService(documentRepository);
 	}
 	
+	// testing listAllDocuments method
 	@Test
 	public void testListAllDocuments() {
+		// set up a test user instance and test folder instance
+		// set the test user as the owner of the test folder
 		User user = new User();
 		user.setId(1);
 		Folder folder = new Folder();
 		folder.setUser(user);
 		
+		// set up two test document instances
 		Document doc1 = new Document();
 		Document doc2 = new Document();
 		doc1.setFold(folder);
 		doc2.setFold(folder);
 		
+		// create an empty document ArrayList
+		// add test documents to it
+		// test to see that length of the test document list returned from the method
+		// matches the expected length
 		List<Document> list = new ArrayList<>();
 		list.add(doc1);
 		list.add(doc2);
@@ -51,19 +60,29 @@ public class DocumentServiceTest {
 		assertEquals(expected, actual.size());
 	}
 	
+	// test listAllDocumentsByFolderId method
 	@Test
 	public void testListAllDocumentsByFolderId() {
+		// set up test user instance and test folder instance
+		// set the test folder id to 1
+		// set the test user as the owner of the test folder
 		User user = new User();
 		user.setId(1);
 		Folder folder = new Folder();
 		folder.setId(1);
 		folder.setUser(user);
 		
+		// set up two test document instances
+		// set their folders to the test folder
 		Document doc1 = new Document();
 		Document doc2 = new Document();
 		doc1.setFold(folder);
 		doc2.setFold(folder);
 		
+		// create an empty document ArrayList
+		// add test documents to it
+		// test to see that length of the test document list returned matches the length
+		// provided by the method
 		List<Document> list = new ArrayList<>();
 		list.add(doc1);
 		list.add(doc2);
@@ -73,8 +92,13 @@ public class DocumentServiceTest {
 		assertEquals(expected, actual.size());
 	}
 	
+	// test findById method
 	@Test
 	public void testFindById() {
+		// set up test document, test user, and test folder
+		// set test user id to 1
+		// set test user as the owner of the test folder
+		// set the test folder as containing the test document
 		Document doc = new Document("titleTest", "contentTest");
 		User user = new User();
 		user.setId(1);
@@ -84,6 +108,8 @@ public class DocumentServiceTest {
 		doc.setFold(folder);
 		doc.setId(1);
 		
+		// check to see that the document returned from the method has the same id number
+		// as the number expected
 		Mockito.when(documentRepository.findById(anyInt())).thenReturn(doc);
 		Document actual = documentService.findById(1);
 		int expected = 1;

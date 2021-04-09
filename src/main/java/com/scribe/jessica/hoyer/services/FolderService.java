@@ -17,22 +17,27 @@ public class FolderService {
 		this.folderRepository = folderRepository;
 	}
 	
+	// save folder
 	public void saveFolder(Folder folder) {
 		folderRepository.save(folder);
 	}
 	
+	// list all folders by using id
 	public List<Folder> listAllFolders(int id) {
 		return (List<Folder>) folderRepository.findByUserId(id);
 	}
 	
+	// find folder by id
 	public Folder findById(int id) {
 		return folderRepository.findById(id);
 	}
 	
+	// edit a folder's title using its id
 	public void editFolder(String title, int id) {
 		folderRepository.editFolder(title, id);
 	}
 	
+	// delete folder by id
 	public void deleteFolder(int id) {
 		folderRepository.deleteById(id);
 	}

@@ -13,10 +13,13 @@ import com.scribe.jessica.hoyer.models.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
+	// find user by username
 	public User findByUsername(String username);
 	
+	// delete user
 	public void deleteById(int id);
 	
+	// edits user's username and password using its id
 	@Transactional
 	@Modifying
 	@Query("UPDATE User u SET u.username = :new_username, u.password = :new_password"

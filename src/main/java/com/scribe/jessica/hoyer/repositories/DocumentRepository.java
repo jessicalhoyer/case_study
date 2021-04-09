@@ -14,10 +14,13 @@ import com.scribe.jessica.hoyer.models.Folder;
 
 public interface DocumentRepository extends JpaRepository<Document, Integer> {
 	
+	// find all documents with a certain folder id
 	public List<Document> findByFolderId(int id);
 	
+	// find a document by its id
 	public Document findById(int id);
 	
+	// update a document's title, content, and folder using its id
 	@Transactional
 	@Modifying
 	@Query("UPDATE Document d SET d.title = :new_title, d.content = :new_content"
@@ -27,6 +30,7 @@ public interface DocumentRepository extends JpaRepository<Document, Integer> {
 			@Param("new_folder") Folder folder,
 			@Param("id") int id);
 	
+	// delete document by id
 	public void deleteById(int id);
 
 }

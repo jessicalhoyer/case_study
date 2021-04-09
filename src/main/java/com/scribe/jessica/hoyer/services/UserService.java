@@ -16,6 +16,8 @@ public class UserService {
 		this.userRepository = userRepository;
 	}
 	
+	// save user
+	// throws exception if user tries to use a username that's already taken
 	public void saveUser(User user) throws UsernameTakenException {
 		try {
 			userRepository.save(user);
@@ -25,14 +27,18 @@ public class UserService {
 		}
 	}
 	
+	// find user by username
 	public User findByUsername(String username) {
 		return userRepository.findByUsername(username);
 	}
 	
+	// delete user
 	public void deleteUser(User user) {
 		userRepository.delete(user);
 	}
 	
+	// edits user's username and password using its id
+	// throws exception if user tries to use a username that's already taken
 	public void editProfile(String username, String password, int id) throws UsernameTakenException {
 		try {
 			userRepository.editProfile(username, password, id);
