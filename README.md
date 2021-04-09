@@ -4,7 +4,7 @@ My case study project for my TEKSystems Full Stack Java Developer bootcamp.
 
 ## Description
 
-Scribe is a web application that will allow users to register an account that will let them create, edit, and delete documents and folders and store those documents in different folders.
+Scribe is a web application that will allow users to register an account that will let them create, edit, and delete documents and folders, and store those documents in different folders.
 
 ## User Stories
 
