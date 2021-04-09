@@ -2,13 +2,14 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-        <title>Scribe | ${currentUser.username}'s Profile</title>
+        <title>Scribe | Profile</title>
 
         <!-- stylesheet -->
         <spring:url value="/resources/css/main.css" var="mainCss"/>
@@ -18,39 +19,42 @@
         <link href="https://fonts.googleapis.com/css2?family=Quattrocento Sans&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Shadows Into Light&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Quattrocento&display=swap" rel="stylesheet">
+</head>
+<body>
+
+	<!-- start header -->
+	<header>
+		<nav>
+			<ul>
+				<li><p class="title">Scribe</p></li>
+				<li>Welcome ${currentUser.username}</li>
+				<li><a href="profile">Profile</a></li>
+				<li><a href="directory">Directory</a></li>
+				<li><a href="logout">Logout</a></li>
+			</ul>
+		</nav>	            
+	</header>
         
-
-    </head>
-    <body>
-        <header>
-            <!-- logo here potentially -->
-			<nav>
-				<ul>
-					<li><p class="title">Scribe</p></li>
-					<li>Welcome ${currentUser.username}</li>
-					<li><a href="profile">Profile</a></li>
-					<li><a href="directory">Directory</a></li>
-					<li><a href="logout">Logout</a></li>
-				</ul>
-			</nav>
-	            
-        </header>
-
-
-        <div id="wrapper">
+	<!-- end header -->
+	
+	<!-- start wrapper -->
+	
+	<div id="wrapper">
+	
+		<!-- start content section -->
         
-        	<section class="content">
+		<section class="content">
         	
-        	<h2>${currentUser.username}'s Profile</h2>
+		<h2>${currentUser.username}'s Profile</h2>
 
-            <p><b>Username:</b> ${currentUser.username}</p>
+		<p><b>Username:</b> ${currentUser.username}</p>
             
             <div class="line">
             	<a href="edit-profile" class="button">Edit Profile</a>
 	            <a href="delete-profile" class="button">Delete Account</a>
             </div>
             
-			<p>${profileEditSuccess}</p>
+            <!-- start directory list -->
             
             <p class="folder"><b>Directory</b></p>
             
@@ -71,13 +75,23 @@
 			       		</c:if>
 			    	</c:forEach>
 	       		</c:if>
+	       		
+	       		<!-- end directory list -->
 
-			</section>
+		</section>
+		
+		<!-- end content section -->
             
-        </div>
+	</div>
+	
+	<!-- end wrapper -->
 
-        <footer>
-            <p class="center">Scribe &copy; Jessica Hoyer 2021</p>
-        </footer>
-</head>
-<body>
+	<!-- start footer -->
+	
+	<footer>
+		<p class="center">Scribe &copy; Jessica Hoyer 2021</p>
+	</footer>
+	
+	<!-- end footer -->
+</body>
+</html>

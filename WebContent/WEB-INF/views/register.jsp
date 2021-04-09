@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,26 +18,31 @@
         <link href="https://fonts.googleapis.com/css2?family=Quattrocento Sans&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Shadows Into Light&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Quattrocento&display=swap" rel="stylesheet">
-        
+</head>
+<body>
 
-    </head>
-    <body>
-        <header>
-            <!-- logo here potentially -->
-             <nav>
-				<ul>
-					<li><p class="title">Scribe</p></li>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="login.html">Login</a></li>
-					<li><a href="register.html" class="selected">Register</a></li>
-				</ul>
-			</nav>
-        </header>
+	<!-- start header -->
+	
+	<header>
+		<nav>
+			<ul>
+				<li><p class="title">Scribe</p></li>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="login.html">Login</a></li>
+				<li><a href="register.html" class="selected">Register</a></li>
+			</ul>
+		</nav>
+	</header>
+	
+	<!-- end header -->
+	
+	<!-- start wrapper -->
 
+	<div id="wrapper">
+	
+		<!-- start content section -->
 
-        <div id="wrapper">
-
-        <section class="content">
+		<section class="content">
         
         <h2>Register</h2>
         
@@ -47,8 +51,10 @@
         <p>Please pick a username longer than 2 characters and no more than 30 characters, and a password longer than 4 characters and no more than 20 characters.</p>
         
         <p>All usernames are unique for each account, so if the one you pick is taken, please choose another one.</p>
+        
+        	<!-- start form -->
 
-            <form class="center" action="./register" method="post">
+			<form class="center" action="./register" method="post">
 
                 <div class="line">
                     <label for="username">Username</label>
@@ -70,6 +76,7 @@
                     <input type="reset" value="Reset" name="reset" id="reset"/>
                 </div>
                 
+                <!-- validation checks below -->
                 <p>${usernameBlank}</p>
                 <p>${usernameTaken}</p>
                 <p>${passwordBlank}</p>
@@ -79,15 +86,22 @@
                 
             </form>
             
-            </section>
+            <!-- end form -->
             
-        </div>
+		</section>
+		
+		<!-- end content section -->
             
-        <footer>
-            <p class="center">Scribe &copy; Jessica Hoyer 2021</p>
-        </footer>
-</head>
-<body>
-
+	</div>
+	
+	<!-- end wrapper -->
+	
+	<!-- start footer -->
+            
+	<footer>
+		<p class="center">Scribe &copy; Jessica Hoyer 2021</p>
+	</footer>
+	
+	<!-- end footer -->
 </body>
 </html>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,32 +18,37 @@
         <link href="https://fonts.googleapis.com/css2?family=Quattrocento Sans&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Shadows Into Light&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Quattrocento&display=swap" rel="stylesheet">
+</head>
+<body>
+
+	<!-- start header -->
+	<header>
+		<nav>
+			<ul>
+				<li><p class="title">Scribe</p></li>
+				<li>Welcome ${currentUser.username}</li>
+				<li><a href="profile">Profile</a></li>
+				<li><a href="directory">Directory</a></li>
+				<li><a href="logout">Logout</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<!-- end header -->
+	
+	<!-- start wrapper -->
+
+	<div id="wrapper">
+	
+		<!-- start content section -->
         
-
-    </head>
-    <body>
-        <header>
-            <!-- logo here potentially -->
-			<nav>
-				<ul>
-					<li><p class="title">Scribe</p></li>
-					<li>Welcome ${currentUser.username}</li>
-					<li><a href="profile">Profile</a></li>
-					<li><a href="directory">Directory</a></li>
-					<li><a href="logout">Logout</a></li>
-				</ul>
-			</nav>
-	            
-        </header>
-
-
-        <div id="wrapper">
-        
-        <section class="content">
+		<section class="content">
         
         <h2>Edit Profile</h2>
         
-        <p>Change your username and password here. If you don't want to change your password, just enter and confirm your current password.</p>
+        	<p>Change your username and password here. If you don't want to change your password, just enter and confirm your current password.</p>
+        	
+        	<!-- start form -->
 
             <form class="center" action="./edit-profile" method="post">
             
@@ -67,22 +72,33 @@
             		<a href="profile" class="button">Cancel</a>
             	</div>
             	
-            <p>${usernameBlank}</p>
-            <p>${usernameTaken}</p>
-            <p>${passwordBlank}</p>
-            <p>${passwordMismatch}</p>
-            <p>${usernameLength}</p>
-            <p>${passwordLength}</p>
-            <p>${profileEditSuccess}</p>
+            	<!-- validation checks below -->
+	            <p>${usernameBlank}</p>
+	            <p>${usernameTaken}</p>
+	            <p>${passwordBlank}</p>
+	            <p>${passwordMismatch}</p>
+	            <p>${usernameLength}</p>
+	            <p>${passwordLength}</p>
+	            <p>${profileEditSuccess}</p>
             
             </form>
-			
-			</section>
             
-        </div>
+            <!-- end form -->
+			
+		</section>
+		
+		<!-- end content section -->
+            
+	</div>
+	
+	<!-- end wrapper -->
+	
+	<!-- start footer -->
 
-        <footer>
-            <p class="center">Scribe &copy; Jessica Hoyer 2021</p>
-        </footer>
-</head>
-<body>
+	<footer>
+		<p class="center">Scribe &copy; Jessica Hoyer 2021</p>
+	</footer>
+	
+	<!-- end footer -->
+</body>
+</html>
