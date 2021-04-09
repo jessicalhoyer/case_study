@@ -226,40 +226,6 @@ public class HomeController {
 		return "directory";
 	}
 	
-	// show directory page that displays messages for the changes the user has made
-	// currently does not work
-	@GetMapping("/directory{message}")
-	public String showDirectoryMessage(@PathVariable("message") String message,
-			HttpSession session, Model model) {
-		
-		if (message.equals("?folderCreate=true")) {
-			model.addAttribute("folderCreateSuccess", "Folder created successfully.");
-		}
-		if (message.equals("?folderEdit=true")) {
-			model.addAttribute("folderEditSuccess", "Folder edited successfully ");
-		}
-		if (message.equals("?folderDelete=true")) {
-			model.addAttribute("folderDeleteSuccess", "Folder deleted successfully.");
-		}
-		if (message.equals("?docCreate=true")) {
-			model.addAttribute("docCreateSuccess", "Document created successfully.");
-		}
-		if (message.equals("?docEdit=true")) {
-			model.addAttribute("docEditSuccess", "Document edited successfully.");
-		}
-		if (message.equals("?docDelete=true")) {
-			model.addAttribute("docDeleteSuccess", "Document deleted successfully.");
-		}
-		
-		
-		User user = (User) session.getAttribute("currentUser");
-		List<Folder> folderList = fs.listAllFolders(user.getId());
-		model.addAttribute("folderList", folderList);
-		
-		return "directory";
-		
-	}
-	
 	/* ===== DOC METHODS ==== */
 	
 	// show doc page aka view mode
@@ -308,7 +274,7 @@ public class HomeController {
 			Folder folder = fs.findById(Integer.parseInt(folderId));
 			ds.editDocument(title, content, folder, id);
 			model.addAttribute("docEdit", "true");
-			return "redirect:/directory";
+			return "redirect:/doc/" + id;
 		}
 		else {
 			Document doc = ds.findById(id);
@@ -347,7 +313,7 @@ public class HomeController {
 		if (!title.equals("")) {
 
 			fs.editFolder(title, Integer.parseInt(id));
-			model.addAttribute("folderEditSuccess", "Folder successfully edited");
+			model.addAttribute("folderEdit", "true");
 			return "redirect:/directory";
 		}
 		else {

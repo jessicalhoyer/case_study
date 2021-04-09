@@ -112,7 +112,7 @@ li a.selected {
 
 /* form elements */
 
-input, select, textarea {
+input, select, textarea, code {
     background-color:#2B1E35;
     padding:0.3em;
     color:#958F9A;
@@ -125,6 +125,8 @@ input[type="submit"] {
 
 textarea {
 	width:100%;
+	font-family:'Quattrocento Sans';
+	line-height:1.4em;
 }
 
 .line {
@@ -157,6 +159,7 @@ h1 {
     color:#fff;
     font-family:'Shadows Into Light', cursive;
     font-size:3em;
+    text-align:center;
 }
 
 h2 {
